@@ -76,23 +76,28 @@ Some example recipes for inspiration
 
 Install with npm:
 ```bash
-npm install --save vue-good-table
+npm install vue-good-table-next
+```
+
+Install with npm:
+```bash
+yarn add vue-good-table-next
 ```
 
 Import globally in app:
 
 ```javascript
-import VueGoodTablePlugin from 'vue-good-table';
+import VueGoodTablePlugin from 'vue-good-table-next';
 
 // import the styles 
-import 'vue-good-table/dist/vue-good-table.css'
+import 'vue-good-table/dist/vue-good-table-next.css'
 
 Vue.use(VueGoodTablePlugin);
 ```
 
 Import into your component
 ```js
-import { VueGoodTable } from 'vue-good-table';
+import { VueGoodTable } from 'vue-good-table-next';
 
 // add to component
 components: {
@@ -104,7 +109,7 @@ Import into your component using Typescript
 ```typescript
 // add to component
 components: {
-  'vue-good-table': require('vue-good-table').VueGoodTable,
+  'vue-good-table': require('vue-good-table-next').VueGoodTable,
 }
 ```
 
