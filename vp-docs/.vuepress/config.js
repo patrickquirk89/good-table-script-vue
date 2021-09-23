@@ -46,18 +46,16 @@ module.exports = {
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },
     ],
-    sidebar: {
+    sidebar: {  
       '/guide/': [
         {
-          title: 'Introduction',
-          collapsable: false,
+          text: 'Introduction',
           children: [
-            '',
+            '/guide/',
           ]
         },
         {
-          title: 'Configuration',
-          collapsable: false,
+          text: 'Configuration',
           children: [
             '/guide/configuration/',
             '/guide/configuration/table-events',
@@ -69,8 +67,7 @@ module.exports = {
           ]
         },
         {
-          title: 'Advanced Configuration',
-          collapsable: false,
+          text: 'Advanced Configuration',
           children: [
             '/guide/advanced/',
             '/guide/advanced/checkbox-table',
@@ -79,8 +76,7 @@ module.exports = {
           ]
         },
         {
-          title: 'Style Configuration',
-          collapsable: false,
+          text: 'Style Configuration',
           children: [
             '/guide/style-configuration/',
             '/guide/style-configuration/style-classes',
