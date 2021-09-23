@@ -1,18 +1,22 @@
 <template>
-  <ParentLayout>
-    <carbon-ads slot="sidebar-top"/>
-    <user-bit-ad slot="page-top"/>
-  </ParentLayout>
+  <Layout>
+    <!-- <template #sidebar-top>
+      <CarbonAds />
+    </template> -->
+    <template #page-top>
+      <UserBitAd />
+    </template>
+  </Layout>
 </template>
 
 <script>
-import ParentLayout from '@parent-theme/layouts/Layout.vue'
-import CarbonAds from '@theme/components/CarbonAds.vue'
-import Banner from '@theme/components/Banner.vue'
-import UserBitAd from '@theme/components/UserBitAd.vue'
+import Layout from '@vuepress/theme-default/lib/client/layouts/Layout.vue'
+import CarbonAds from '../components/CarbonAds.vue'
+import Banner from '../components/Banner.vue'
+import UserBitAd from '../components/UserBitAd.vue'
 export default {
   components: {
-    ParentLayout,
+    Layout,
     CarbonAds,
     Banner,
     UserBitAd,

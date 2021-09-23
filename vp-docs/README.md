@@ -4,7 +4,7 @@ heroImage: /hero-image.png
 actions:
   - text: Get Started →
     link: /guide/
-footer: MIT Licensed | Copyright © 2018-2021 xaksis
+footer: MIT Licensed | Copyright © 2021 Boris Flesch (based on xaksis' project)
 ---
 
 <div class="features">

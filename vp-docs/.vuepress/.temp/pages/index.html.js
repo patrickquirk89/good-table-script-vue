@@ -12,19 +12,37 @@ export const data = {
         "link": "/guide/"
       }
     ],
-    "footer": "MIT Licensed | Copyright © 2018-2021 xaksis"
+    "footer": "MIT Licensed | Copyright © 2021 Boris Flesch (based on xaksis' project)"
   },
   "excerpt": "",
   "headers": [],
   "filePathRelative": "README.md",
   "git": {
-    "updatedTime": 1532356577000,
+    "updatedTime": 1632392731000,
     "contributors": [
       {
         "name": "Akshay Anand",
         "email": "aks9800@gmail.com",
         "commits": 6
+      },
+      {
+        "name": "Boris Flesch",
+        "email": "boris.flesch@gmail.com",
+        "commits": 1
       }
     ]
   }
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
 }

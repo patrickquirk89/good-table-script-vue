@@ -36,7 +36,6 @@ export default {
     padding: 1rem;
     background: #f3f4f7;
     position: absolute;
-    top: 100%;
     color: #545557;
     width: 100%;
     text-align: center;

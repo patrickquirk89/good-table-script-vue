@@ -3,14 +3,6 @@ export const pagesData = {
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
   // path: /guide/
   "v-fffb8e28": () => import(/* webpackChunkName: "v-fffb8e28" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/index.html.js").then(({ data }) => data),
-  // path: /guide/advanced/
-  "v-7676ace1": () => import(/* webpackChunkName: "v-7676ace1" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/advanced/index.html.js").then(({ data }) => data),
-  // path: /guide/advanced/checkbox-table.html
-  "v-3925db94": () => import(/* webpackChunkName: "v-3925db94" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/advanced/checkbox-table.html.js").then(({ data }) => data),
-  // path: /guide/advanced/grouped-table.html
-  "v-41a19b8a": () => import(/* webpackChunkName: "v-41a19b8a" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/advanced/grouped-table.html.js").then(({ data }) => data),
-  // path: /guide/advanced/remote-workflow.html
-  "v-0be65194": () => import(/* webpackChunkName: "v-0be65194" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/advanced/remote-workflow.html.js").then(({ data }) => data),
   // path: /guide/configuration/
   "v-1d4155e5": () => import(/* webpackChunkName: "v-1d4155e5" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/configuration/index.html.js").then(({ data }) => data),
   // path: /guide/configuration/column-filter-options.html
@@ -25,6 +17,14 @@ export const pagesData = {
   "v-0f317d85": () => import(/* webpackChunkName: "v-0f317d85" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/configuration/sort-options.html.js").then(({ data }) => data),
   // path: /guide/configuration/table-events.html
   "v-d56a7ec8": () => import(/* webpackChunkName: "v-d56a7ec8" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/configuration/table-events.html.js").then(({ data }) => data),
+  // path: /guide/advanced/
+  "v-7676ace1": () => import(/* webpackChunkName: "v-7676ace1" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/advanced/index.html.js").then(({ data }) => data),
+  // path: /guide/advanced/checkbox-table.html
+  "v-3925db94": () => import(/* webpackChunkName: "v-3925db94" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/advanced/checkbox-table.html.js").then(({ data }) => data),
+  // path: /guide/advanced/grouped-table.html
+  "v-41a19b8a": () => import(/* webpackChunkName: "v-41a19b8a" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/advanced/grouped-table.html.js").then(({ data }) => data),
+  // path: /guide/advanced/remote-workflow.html
+  "v-0be65194": () => import(/* webpackChunkName: "v-0be65194" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/advanced/remote-workflow.html.js").then(({ data }) => data),
   // path: /guide/style-configuration/
   "v-6a970c81": () => import(/* webpackChunkName: "v-6a970c81" */"/Users/boris/Documents/Micro-entreprise/Projets/vue-good-table-next/vp-docs/.vuepress/.temp/pages/guide/style-configuration/index.html.js").then(({ data }) => data),
   // path: /guide/style-configuration/sass.html

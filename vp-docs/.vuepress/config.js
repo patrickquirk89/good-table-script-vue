@@ -8,8 +8,7 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: '/favicon.png' }]
   ],
-  theme: '@vuepress/default',
-
+  
   plugins: [
     { clientAppEnhanceFiles: path.resolve(__dirname, './theme/enhanceApp.js') },
     [
@@ -35,6 +34,9 @@ module.exports = {
       },
     ],
   ],
+
+  // theme: '@vuepress/default',
+  theme: path.resolve(__dirname, './theme'),
 
   themeConfig: {
     repo: 'borisflesch/vue-good-table-next',

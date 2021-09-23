@@ -1,5 +1,5 @@
 <template>
-<div class="carbon-ads">
+<div class="carbon-ads" id="carbonads">
 </div>
 </template>
 

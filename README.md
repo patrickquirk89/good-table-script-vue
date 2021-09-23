@@ -113,18 +113,18 @@ components: {
 ![Advanced Screenshot](README/images/vgt-table.advanced.png)
 
 ## Features
-* [Table Search](https://xaksis.github.io/vue-good-table/guide/configuration/search-options.html)
-* [Sorting](https://xaksis.github.io/vue-good-table/guide/configuration/sort-options.html)
-* [Column Filtering](https://xaksis.github.io/vue-good-table/guide/configuration/column-filter-options.html#filteroptions)
-* [Pagination](https://xaksis.github.io/vue-good-table/guide/configuration/pagination-options.html)
-* [Highly Customizable](https://xaksis.github.io/vue-good-table/guide/advanced/#custom-row-template)
-* [Checkbox Table](https://xaksis.github.io/vue-good-table/guide/advanced/checkbox-table.html)
-* [Grouped Rows Table](https://xaksis.github.io/vue-good-table/guide/advanced/grouped-table.html)
-* [Server Powered Table](https://xaksis.github.io/vue-good-table/guide/advanced/remote-workflow.html#why-remote-mode)
-* [Customizable Style and Themes](https://xaksis.github.io/vue-good-table/guide/style-configuration/)
+* [Table Search](https://borisflesch.github.io/vue-good-table-next/guide/configuration/search-options.html)
+* [Sorting](https://borisflesch.github.io/vue-good-table-next/guide/configuration/sort-options.html)
+* [Column Filtering](https://borisflesch.github.io/vue-good-table-next/guide/configuration/column-filter-options.html#filteroptions)
+* [Pagination](https://borisflesch.github.io/vue-good-table-next/guide/configuration/pagination-options.html)
+* [Highly Customizable](https://borisflesch.github.io/vue-good-table-next/guide/advanced/#custom-row-template)
+* [Checkbox Table](https://borisflesch.github.io/vue-good-table-next/guide/advanced/checkbox-table.html)
+* [Grouped Rows Table](https://borisflesch.github.io/vue-good-table-next/guide/advanced/grouped-table.html)
+* [Server Powered Table](https://borisflesch.github.io/vue-good-table-next/guide/advanced/remote-workflow.html#why-remote-mode)
+* [Customizable Style and Themes](https://borisflesch.github.io/vue-good-table-next/guide/style-configuration/)
 
-## Upgrade Guide
-Hey there! coming from 1.x? find the [upgrade guide here](https://github.com/xaksis/vue-good-table/wiki/Guide-to-upgrade-from-1.x-to-v2.0)
+<!-- ## Upgrade Guide
+Hey there! coming from 1.x? find the [upgrade guide here](https://github.com/xaksis/vue-good-table/wiki/Guide-to-upgrade-from-1.x-to-v2.0) -->
 
 <!-- 
 ### Example Usage
@@ -1247,8 +1247,9 @@ You can provide html for empty state slot as well. Example:
 
 ## Authors
 
-* [xaksis](https://github.com/xaksis)
-* [Other Contributors](https://github.com/xaksis/vue-good-table/graphs/contributors)
+* [Boris Flesch](https://github.com/boris-flesch)
+* [xaksis](https://github.com/xaksis) (initial version of Vue-good-table for Vue 2.x)
+* [Other Contributors](https://github.com/borisflesch/vue-good-table-next/graphs/contributors)
 
 ## License
 
