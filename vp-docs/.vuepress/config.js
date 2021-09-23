@@ -1,18 +1,47 @@
+const path = require('@vuepress/utils').path;
+
 module.exports = {
-  title: 'vue-good-table',
-  description: 'A powerful data table plugin for VueJS',
-  base: '/vue-good-table/',
+  title: 'vue-good-table-next',
+  description: 'A powerful data table plugin for Vue 3.X',
+  base: '/vue-good-table-next/',
   dest: 'docs',
-  ga: 'UA-120929110-1',
   head: [
     ['link', { rel: 'icon', href: '/favicon.png' }]
   ],
-  theme: '@vuepress/vue',
+  theme: '@vuepress/default',
+
+  plugins: [
+    { clientAppEnhanceFiles: path.resolve(__dirname, './theme/enhanceApp.js') },
+    [
+      '@vuepress/plugin-register-components',
+      {
+        componentsDir: path.resolve(__dirname, './components'),
+      },
+    ],
+    [
+      '@vuepress/plugin-google-analytics',
+      {
+        id: 'G-0V4SMPYCC4',
+      },
+    ],
+    [
+      '@vuepress/plugin-search',
+      {
+        locales: {
+          '/': {
+            placeholder: 'Search',
+          },
+        },
+      },
+    ],
+  ],
+
   themeConfig: {
-    repo: 'xaksis/vue-good-table',
+    repo: 'borisflesch/vue-good-table-next',
     logo: '/vgt-logo.png',
     lastUpdated: true,
-    nav: [
+    darkMode: false,
+    navbar: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },
     ],

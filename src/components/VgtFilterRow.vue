@@ -2,60 +2,64 @@
 <tr v-if="hasFilterRow">
   <th v-if="lineNumbers"></th>
   <th v-if="selectable"></th>
-  <th
-    v-for="(column, index) in columns" :key="index"
-    v-if="!column.hidden"
-    :class="getClasses(column)"
-    >
+  <template
+    v-for="(column, index) in columns"
+    :key="index"
+  >
+      <th
+        v-if="!column.hidden"
+        :class="getClasses(column)"
+      >
 
-    <slot
-        name="column-filter"
-        :column="column"
-        :updateFilters="updateSlotFilter"
-    >
+        <slot
+            name="column-filter"
+            :column="column"
+            :updateFilters="updateSlotFilter"
+        >
 
-      <div
-        v-if="isFilterable(column)">
-        <input v-if="!isDropdown(column)"
-          :name="getName(column)"
-          type="text"
-          class="vgt-input"
-          :placeholder="getPlaceholder(column)"
-          :value="columnFilters[fieldKey(column.field)]"
-          @keyup.enter="updateFiltersOnEnter(column, $event.target.value)"
-          @input="updateFiltersOnKeyup(column, $event.target.value)" />
+          <div
+            v-if="isFilterable(column)">
+            <input v-if="!isDropdown(column)"
+              :name="getName(column)"
+              type="text"
+              class="vgt-input"
+              :placeholder="getPlaceholder(column)"
+              :value="columnFilters[fieldKey(column.field)]"
+              @keyup.enter="updateFiltersOnEnter(column, $event.target.value)"
+              @input="updateFiltersOnKeyup(column, $event.target.value)" />
 
-        <!-- options are a list of primitives -->
-        <select v-if="isDropdownArray(column)"
-          :name="getName(column)"
-          class="vgt-select"
-          :value="columnFilters[fieldKey(column.field)]"
-          @change="updateFiltersImmediately(column.field, $event.target.value)">
-            <option value="" key="-1">{{ getPlaceholder(column) }}</option>
-            <option
-              v-for="(option, i) in column.filterOptions.filterDropdownItems"
-              :key="i"
-              :value="option">
-              {{ option }}
-            </option>
-        </select>
+            <!-- options are a list of primitives -->
+            <select v-if="isDropdownArray(column)"
+              :name="getName(column)"
+              class="vgt-select"
+              :value="columnFilters[fieldKey(column.field)]"
+              @change="updateFiltersImmediately(column.field, $event.target.value)">
+                <option value="" key="-1">{{ getPlaceholder(column) }}</option>
+                <option
+                  v-for="(option, i) in column.filterOptions.filterDropdownItems"
+                  :key="i"
+                  :value="option">
+                  {{ option }}
+                </option>
+            </select>
 
-        <!-- options are a list of objects with text and value -->
-        <select v-if="isDropdownObjects(column)"
-          :name="getName(column)"
-          class="vgt-select"
-          :value="columnFilters[fieldKey(column.field)]"
-          @change="updateFiltersImmediately(column.field, $event.target.value)">
-          <option value="" key="-1">{{ getPlaceholder(column) }}</option>
-          <option
-            v-for="(option, i) in column.filterOptions.filterDropdownItems"
-            :key="i"
-            :value="option.value">{{ option.text }}</option>
-        </select>
+            <!-- options are a list of objects with text and value -->
+            <select v-if="isDropdownObjects(column)"
+              :name="getName(column)"
+              class="vgt-select"
+              :value="columnFilters[fieldKey(column.field)]"
+              @change="updateFiltersImmediately(column.field, $event.target.value)">
+              <option value="" key="-1">{{ getPlaceholder(column) }}</option>
+              <option
+                v-for="(option, i) in column.filterOptions.filterDropdownItems"
+                :key="i"
+                :value="option.value">{{ option.text }}</option>
+            </select>
 
-      </div>
-    </slot>
-  </th>
+          </div>
+        </slot>
+      </th>
+  </template>
 </tr>
 </template>
 
@@ -71,6 +75,7 @@ export default {
     'selectable',
     'mode',
   ],
+  emits: ['filter-changed'],
   watch: {
     columns: {
       handler(newValue, oldValue) {
@@ -185,7 +190,7 @@ export default {
     },
 
     updateFiltersImmediately(field, value) {
-      this.$set(this.columnFilters, this.fieldKey(field), value);
+      this.columnFilters[this.fieldKey(field)] = value;
       this.$emit('filter-changed', this.columnFilters);
     },
 
@@ -197,7 +202,7 @@ export default {
         if (this.isFilterable(col)
           && typeof col.filterOptions.filterValue !== 'undefined'
           && col.filterOptions.filterValue !== null) {
-          this.$set(this.columnFilters, this.fieldKey(col.field), col.filterOptions.filterValue);
+          this.columnFilters[this.fieldKey(col.field)] = col.filterOptions.filterValue;
           // this.updateFilters(col, col.filterOptions.filterValue);
           // this.$set(col.filterOptions, 'filterValue', undefined);
         }

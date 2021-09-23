@@ -3,7 +3,7 @@
   <vue-good-table
     :columns="columns"
     :rows="rows">
-    <template slot="table-row" slot-scope="props">
+    <template #table-row="props">
       <span v-if="props.column.field == 'before'">
         before
       </span>

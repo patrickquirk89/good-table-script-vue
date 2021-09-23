@@ -9,18 +9,21 @@
         :indeterminate.prop="allSelectedIndeterminate"
         @change="toggleSelectAll" />
     </th>
-    <th v-for="(column, index) in columns"
-      scope="col"
-      :key="index"
-      :title="column.tooltip"
-      :class="getHeaderClasses(column, index)"
-      :style="columnStyles[index]"
-      :aria-sort="getColumnSortLong(column)"
-      :aria-controls="`col-${index}`"
-      v-if="!column.hidden">
-      <slot name="table-column" :column="column">
-        {{column.label}}
-      </slot>
+    <template
+        v-for="(column, index) in columns"
+        :key="index"
+    >
+      <th v-if="!column.hidden"
+        scope="col"
+        :title="column.tooltip"
+        :class="getHeaderClasses(column, index)"
+        :style="columnStyles[index]"
+        :aria-sort="getColumnSortLong(column)"
+        :aria-controls="`col-${index}`"
+      >
+        <slot name="table-column" :column="column">
+          {{column.label}}
+        </slot>
         <button
         v-if="isSortableColumn(column)"
         @click="sort($event, column)">
@@ -28,10 +31,10 @@
           Sort table by {{ column.label }} in {{ getColumnSortLong(column) }} order
           </span>
         </button>
-    </th>
+      </th>
+    </template>
   </tr>
-  <tr
-    is="vgt-filter-row"
+  <vgt-filter-row
     ref="filter-row"
     @filter-changed="filterRows"
     :global-search-enabled="searchEnabled"
@@ -40,18 +43,15 @@
     :columns="columns"
     :mode="mode"
     :typed-columns="typedColumns">
-      <template
-        slot="column-filter"
-        slot-scope="props"
-      >
+      <template #column-filter="slotProps">
         <slot
           name="column-filter"
-          :column="props.column"
-          :updateFilters="props.updateFilters"
+          :column="slotProps.column"
+          :updateFilters="slotProps.updateFilters"
         >
         </slot>
       </template>
-  </tr>
+  </vgt-filter-row>
 </thead>
 </template>
 
@@ -108,6 +108,11 @@ export default {
 
     paginated: {},
   },
+  emits: [
+    'on-toggle-select-all',
+    'on-sort-change',
+    'filter-changed',
+  ],
   watch: {
     columns: {
       handler() {

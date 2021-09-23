@@ -6,9 +6,9 @@
     :rows="rows"
     :select-options="{ enabled: true }"
     :search-options="{ enabled: true }">
-    <div v-if="showSlot" slot="selected-row-actions">
+    <template v-if="showSlot" #selected-row-actions>
       <button>Action 1</button>
-    </div>
+    </template>
   </vue-good-table>  
 </div>
 </template>

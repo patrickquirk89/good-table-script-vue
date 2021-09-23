@@ -4,7 +4,7 @@
     <form @submit.prevent v-if="searchEnabled" role="search">
       <label :for="id">
         <span aria-hidden="true" class="input__icon">
-        <div class="magnifying-glass"></div>
+          <div class="magnifying-glass"></div>
         </span>
         <span class="sr-only">Search</span>
       </label>
@@ -33,6 +33,11 @@ export default {
     'value',
     'searchEnabled',
     'globalSearchPlaceholder',
+  ],
+  emits: [
+    'input',
+    'on-keyup',
+    'on-enter',
   ],
   data() {
     return {

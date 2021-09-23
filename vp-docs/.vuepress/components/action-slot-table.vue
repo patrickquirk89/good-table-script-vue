@@ -3,10 +3,10 @@
   <vue-good-table
     :columns="columns"
     :rows="rows">
-    <div slot="table-actions">
+    <template #table-actions>
       <button class="button">Button 1</button>
       <button class="button">Button 2</button>
-    </div>
+    </template>
   </vue-good-table>
 </div>
 </template>

@@ -40,11 +40,12 @@
       <vgt-global-search
         @on-keyup="searchTableOnKeyUp"
         @on-enter="searchTableOnEnter"
-        v-model="globalSearchTerm"
+        :value="globalSearchTerm"
+        @input="globalSearchTerm = $event"
         :search-enabled="searchEnabled && externalSearchQuery == null"
         :global-search-placeholder="searchPlaceholder"
       >
-        <template slot="internal-table-actions">
+        <template #internal-table-actions v-if="$slots['table-actions']">
           <slot name="table-actions">
           </slot>
         </template>
@@ -76,8 +77,7 @@
           <col v-for="(column, index) in columns" :key="index" :id="`col-${index}`">
         </colgroup>
           <!-- Table header -->
-          <thead
-            is="vgt-table-header"
+          <vgt-table-header
             ref="table-header-secondary"
             @on-toggle-select-all="toggleSelectAll"
             @on-sort-change="changeSort"
@@ -96,28 +96,23 @@
             :paginated="paginated"
             :table-ref="$refs.table"
           >
-            <template
-              slot="table-column"
-              slot-scope="props"
-            >
+            <template #table-column="slotProps">
               <slot
                 name="table-column"
-                :column="props.column"
+                :column="slotProps.column"
               >
-                <span>{{props.column.label}}</span>
+                <span>{{slotProps.column.label}}</span>
               </slot>
             </template>
-            <template
-                slot="column-filter"
-                slot-scope="props"
+            <template #column-filter="slotProps"
             >
               <slot
                   name="column-filter"
-                  :column="props.column"
-                  :updateFilters="props.updateFilters"
+                  :column="slotProps.column"
+                  :updateFilters="slotProps.updateFilters"
               ></slot>
             </template>
-          </thead>
+          </vgt-table-header>
         </table>
       </div>
       <div
@@ -133,8 +128,7 @@
           <col v-for="(column, index) in columns" :key="index" :id="`col-${index}`">
         </colgroup>
           <!-- Table header -->
-          <thead
-            is="vgt-table-header"
+          <vgt-table-header
             ref="table-header-primary"
             @on-toggle-select-all="toggleSelectAll"
             @on-sort-change="changeSort"
@@ -151,28 +145,24 @@
             :getClasses="getClasses"
             :searchEnabled="searchEnabled"
           >
-            <template
-              slot="table-column"
-              slot-scope="props"
+            <template #table-column="slotProps"
             >
               <slot
                 name="table-column"
-                :column="props.column"
+                :column="slotProps.column"
               >
-                <span>{{props.column.label}}</span>
+                <span>{{slotProps.column.label}}</span>
               </slot>
             </template>
-            <template
-              slot="column-filter"
-              slot-scope="props"
+            <template #column-filter="slotProps"
             >
               <slot
                 name="column-filter"
-                :column="props.column"
-                :updateFilters="props.updateFilters"
+                :column="slotProps.column"
+                :updateFilters="slotProps.updateFilters"
               ></slot>
             </template>
-          </thead>
+          </vgt-table-header>
 
           <!-- Table body starts here -->
           <tbody
@@ -199,69 +189,76 @@
             >
               <template
                 v-if="hasHeaderRowTemplate"
-                slot="table-header-row"
-                slot-scope="props"
+                #table-header-row="slotProps"
               >
                 <slot
                   name="table-header-row"
-                  :column="props.column"
-                  :formattedRow="props.formattedRow"
-                  :row="props.row"
+                  :column="slotProps.column"
+                  :formattedRow="slotProps.formattedRow"
+                  :row="slotProps.row"
                 >
                 </slot>
               </template>
             </vgt-header-row>
             <!-- normal rows here. we loop over all rows -->
-            <tr
-              v-if="groupOptions.collapsable ? headerRow.vgtIsExpanded : true"
+            <template
               v-for="(row, index) in headerRow.children"
               :key="row.originalIndex"
-              :class="getRowStyleClass(row)"
-              @mouseenter="onMouseenter(row, index)"
-              @mouseleave="onMouseleave(row, index)"
-              @dblclick="onRowDoubleClicked(row, index, $event)"
-              @click="onRowClicked(row, index, $event)"
-              @auxclick="onRowAuxClicked(row, index, $event)">
-              <th
-                v-if="lineNumbers"
-                class="line-numbers"
+            >
+              <tr
+                v-if="groupOptions.collapsable ? headerRow.vgtIsExpanded : true"
+                
+                :class="getRowStyleClass(row)"
+                @mouseenter="onMouseenter(row, index)"
+                @mouseleave="onMouseleave(row, index)"
+                @dblclick="onRowDoubleClicked(row, index, $event)"
+                @click="onRowClicked(row, index, $event)"
+                @auxclick="onRowAuxClicked(row, index, $event)"
               >
-                {{ getCurrentIndex(row.originalIndex) }}
-              </th>
-              <th
-                v-if="selectable"
-                @click.stop="onCheckboxClicked(row, index, $event)"
-                class="vgt-checkbox-col"
-              >
-                <input
-                  type="checkbox"
-                  :disabled="row.vgtDisabled"
-                  :checked="row.vgtSelected"
-                />
-              </th>
-              <td
-                @click="onCellClicked(row, column, index, $event)"
-                v-for="(column, i) in columns"
-                :key="i"
-                :class="getClasses(i, 'td', row)"
-                v-if="!column.hidden && column.field"
-                v-bind:data-label="compactMode ? column.label : undefined"
-              >
-                <slot
-                  name="table-row"
-                  :row="row"
-                  :column="column"
-                  :formattedRow="formattedRow(row)"
-                  :index="index"
+                <th
+                  v-if="lineNumbers"
+                  class="line-numbers"
                 >
-                  <span v-if="!column.html">
-                    {{ collectFormatted(row, column) }}
-                  </span>
-                  <span v-else v-html="collect(row, column.field)">
-                  </span>
-                </slot>
-              </td>
-            </tr>
+                  {{ getCurrentIndex(row.originalIndex) }}
+                </th>
+                <th
+                  v-if="selectable"
+                  @click.stop="onCheckboxClicked(row, index, $event)"
+                  class="vgt-checkbox-col"
+                >
+                  <input
+                    type="checkbox"
+                    :disabled="row.vgtDisabled"
+                    :checked="row.vgtSelected"
+                  />
+                </th>
+                <template
+                  v-for="(column, i) in columns"
+                  :key="i"
+                >
+                  <td
+                    v-if="!column.hidden && column.field"
+                    @click="onCellClicked(row, column, index, $event)"
+                    :class="getClasses(i, 'td', row)"
+                    v-bind:data-label="compactMode ? column.label : undefined"
+                  >
+                    <slot
+                      name="table-row"
+                      :row="row"
+                      :column="column"
+                      :formattedRow="formattedRow(row)"
+                      :index="index"
+                    >
+                      <span v-if="!column.html">
+                        {{ collectFormatted(row, column) }}
+                      </span>
+                      <span v-else v-html="collect(row, column.field)">
+                      </span>
+                    </slot>
+                  </td>
+                </template>
+              </tr>
+            </template>
             <!-- if group row header is at the bottom -->
             <vgt-header-row
               v-if="groupHeaderOnBottom"
@@ -279,14 +276,13 @@
             >
               <template
                 v-if="hasHeaderRowTemplate"
-                slot="table-header-row"
-                slot-scope="props"
+                #table-header-row="slotProps"
               >
                 <slot
                   name="table-header-row"
-                  :column="props.column"
-                  :formattedRow="props.formattedRow"
-                  :row="props.row"
+                  :column="slotProps.column"
+                  :formattedRow="slotProps.formattedRow"
+                  :row="slotProps.row"
                 >
                 </slot>
               </template>
@@ -445,6 +441,8 @@ export default {
     },
   },
 
+
+
   data: () => ({
     // loading state for remote mode
     tableLoading: false,
@@ -503,6 +501,23 @@ export default {
     sortChanged: false,
     dataTypes: dataTypes || {},
   }),
+
+  emits: [
+    'on-select-all',
+    'on-selected-rows-change',
+    'on-search',
+    'on-per-page-change',
+    'on-page-change',
+    'update:isLoading',
+    'on-sort-change',
+    'on-row-click',
+    'on-row-dblclick',
+    'on-row-aux-click',
+    'on-cell-click',
+    'on-row-mouseenter',
+    'on-row-mouseleave',
+    'on-column-filter',
+  ],
 
   watch: {
     rows: {
@@ -588,10 +603,7 @@ export default {
     },
 
     hasHeaderRowTemplate() {
-      return (
-        !!this.$slots['table-header-row'] ||
-        !!this.$scopedSlots['table-header-row']
-      );
+      return !!this.$slots['table-header-row'];
     },
 
     showEmptySlot() {
@@ -970,7 +982,7 @@ export default {
     },
 
     hasRowClickListener() {
-      return this.$listeners && this.$listeners['on-row-click'];
+      return this.$attrs && this.$attrs['on-row-click'];
     },
   },
 
@@ -980,15 +992,15 @@ export default {
     handleExpanded(headerRow) {
       if (this.maintainExpanded &&
         this.expandedRowKeys.has(headerRow[this.rowKeyField])) {
-        this.$set(headerRow, 'vgtIsExpanded', true);
+        headerRow['vgtIsExpanded'] = true;
       } else {
-        this.$set(headerRow, 'vgtIsExpanded', false);
+        headerRow['vgtIsExpanded'] = false;
       }
     },
     toggleExpand(id) {
       const headerRow = this.filteredRows.find(r => r[this.rowKeyField] === id);
       if (headerRow) {
-        this.$set(headerRow, 'vgtIsExpanded', !headerRow.vgtIsExpanded);
+        headerRow['vgtIsExpanded'] = !headerRow.vgtIsExpanded;
       }
       if (this.maintainExpanded
         && headerRow.vgtIsExpanded) {
@@ -1000,7 +1012,7 @@ export default {
 
     expandAll() {
       this.filteredRows.forEach((row) => {
-        this.$set(row, 'vgtIsExpanded', true);
+        row['vgtIsExpanded'] = true;
         if (this.maintainExpanded) {
           this.expandedRowKeys.add(row[this.rowKeyField]);
         }
@@ -1009,7 +1021,7 @@ export default {
 
     collapseAll() {
       this.filteredRows.forEach((row) => {
-        this.$set(row, 'vgtIsExpanded', false);
+        row['vgtIsExpanded'] = false;
         this.expandedRowKeys.clear();
       });
     },
@@ -1051,7 +1063,7 @@ export default {
         this.selectAllByPage && !forceAll ? this.paginated : this.filteredRows;
       rows.forEach((headerRow, i) => {
         headerRow.children.forEach((row, j) => {
-          this.$set(row, 'vgtSelected', false);
+          row['vgtSelected'] = false;
         });
       });
       this.emitSelectedRows();
@@ -1065,7 +1077,7 @@ export default {
       const rows = this.selectAllByPage ? this.paginated : this.filteredRows;
       rows.forEach((headerRow) => {
         headerRow.children.forEach((row) => {
-          this.$set(row, 'vgtSelected', true);
+          row['vgtSelected'] = true;
         });
       });
       this.emitSelectedRows();
@@ -1073,7 +1085,7 @@ export default {
 
     toggleSelectGroup(event, headerRow) {
       headerRow.children.forEach((row) => {
-        this.$set(row, 'vgtSelected', event.checked);
+        row['vgtSelected'] = eventchecked;
       });
     },
 
@@ -1150,7 +1162,7 @@ export default {
 
     // checkbox click should always do the following
     onCheckboxClicked(row, index, event) {
-      this.$set(row, 'vgtSelected', !row.vgtSelected);
+      row['vgtSelected'] = !row.vgtSelected;
       this.$emit('on-row-click', {
         row,
         pageIndex: index,
@@ -1170,7 +1182,7 @@ export default {
 
     onRowClicked(row, index, event) {
       if (this.selectable && !this.selectOnCheckboxOnly) {
-        this.$set(row, 'vgtSelected', !row.vgtSelected);
+        row['vgtSelected'] = !row.vgtSelected;
       }
       this.$emit('on-row-click', {
         row,
@@ -1456,7 +1468,7 @@ export default {
           this.groupOptions.maintainExpanded &&
           this.expandedRowKeys.has(headerRow[this.groupOptions.rowKey])
         ) {
-          this.$set(headerRow, 'vgtIsExpanded', true);
+          headerRow['vgtIsExpanded'] = true;
         }
         headerRow.children.forEach((childRow) => {
           childRow.vgt_id = i;

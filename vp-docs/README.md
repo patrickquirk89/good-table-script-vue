@@ -1,9 +1,10 @@
 ---
 home: true
 heroImage: /hero-image.png
-actionText: Get Started →
-actionLink: /guide/
-footer: MIT Licensed | Copyright © 2018-present xaksis
+actions:
+  - text: Get Started →
+    link: /guide/
+footer: MIT Licensed | Copyright © 2018-2021 xaksis
 ---
 
 <div class="features">

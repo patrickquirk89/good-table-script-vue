@@ -1,12 +1,16 @@
-# Vue-good-table
+# (WIP) Vue-good-table-next
 
-[![npm](https://img.shields.io/npm/dm/vue-good-table.svg?style=flat-square)](https://www.npmjs.com/package/vue-good-table)
+| :warning: WARNING          |
+|:---------------------------|
+| This project is a port of Vue-good-table for Vue 3.x. The work is currently in progress and many changes could be made shortly, hence the project is not yet ready to use in a production environment.      |
+
+<!-- [![npm](https://img.shields.io/npm/dm/vue-good-table.svg?style=flat-square)](https://www.npmjs.com/package/vue-good-table)
 [![npm](https://img.shields.io/github/package-json/v/xaksis/vue-good-table.svg?style=flat-square)](https://github.com/xaksis/vue-good-table/releases)
 [![npm](https://img.shields.io/github/license/xaksis/vue-good-table.svg?style=flat-square)](https://github.com/xaksis/vue-good-table/blob/master/LICENSE)
 [![](https://data.jsdelivr.com/v1/package/npm/vue-good-table/badge)](https://www.jsdelivr.com/package/npm/vue-good-table)
-[![Twitter Follow](https://img.shields.io/twitter/follow/crayonbytes.svg?label=Follow&style=social)](https://twitter.com/crayonbytes)
+[![Twitter Follow](https://img.shields.io/twitter/follow/crayonbytes.svg?label=Follow&style=social)](https://twitter.com/crayonbytes) -->
 
-An easy to use, clean and powerful data table for VueJS with essential features like sorting, column filtering, pagination and much more - [xaksis.github.io/vue-good-table/](https://xaksis.github.io/vue-good-table/)
+An easy to use, clean and powerful data table for Vue with essential features like sorting, column filtering, pagination and much more - [borisflesch.github.io/vue-good-table-next/](https://borisflesch.github.io/vue-good-table-next/)
 
 <!-- 
 ### Basic Table

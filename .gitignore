@@ -1,3 +1,12 @@
 .DS_Store
 npm-debug.log
-node_modules/
+node_modules
+coverage
+.nyc_output
+.rpt2_cache
+.env
+local.log
+yarn-error.log
+temp
+.idea
+debug.log
