@@ -18,7 +18,7 @@ export const data = {
   "headers": [],
   "filePathRelative": "README.md",
   "git": {
-    "updatedTime": 1632392731000,
+    "updatedTime": 1632402063000,
     "contributors": [
       {
         "name": "Akshay Anand",
@@ -28,21 +28,8 @@ export const data = {
       {
         "name": "Boris Flesch",
         "email": "boris.flesch@gmail.com",
-        "commits": 1
+        "commits": 2
       }
     ]
   }
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }

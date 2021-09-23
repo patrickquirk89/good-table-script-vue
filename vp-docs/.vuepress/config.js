@@ -4,7 +4,6 @@ module.exports = {
   title: 'vue-good-table-next',
   description: 'A powerful data table plugin for Vue 3.X',
   base: '/vue-good-table-next/',
-  dest: 'docs',
   head: [
     ['link', { rel: 'icon', href: '/favicon.png' }]
   ],

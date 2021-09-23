@@ -3,9 +3,9 @@
     <!-- <template #sidebar-top>
       <CarbonAds />
     </template> -->
-    <template #page-top>
+    <!-- <template #page-top>
       <UserBitAd />
-    </template>
+    </template> -->
   </Layout>
 </template>
 
