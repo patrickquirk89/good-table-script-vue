@@ -38,8 +38,8 @@
         ></vgt-pagination>
       </slot>
       <vgt-global-search
-        @on-keyup="searchTableOnKeyUp"
-        @on-enter="searchTableOnEnter"
+        v-on:keyup="searchTableOnKeyUp"
+        v-on:enter="searchTableOnEnter"
         :value="globalSearchTerm"
         @input="globalSearchTerm = $event"
         :search-enabled="searchEnabled && externalSearchQuery == null"
@@ -79,8 +79,8 @@
           <!-- Table header -->
           <vgt-table-header
             ref="table-header-secondary"
-            @on-toggle-select-all="toggleSelectAll"
-            @on-sort-change="changeSort"
+            v-on:toggle-select-all="toggleSelectAll"
+            v-on:sort-change="changeSort"
             @filter-changed="filterRows"
             :columns="columns"
             :line-numbers="lineNumbers"
@@ -130,8 +130,8 @@
           <!-- Table header -->
           <vgt-table-header
             ref="table-header-primary"
-            @on-toggle-select-all="toggleSelectAll"
-            @on-sort-change="changeSort"
+            v-on:toggle-select-all="toggleSelectAll"
+            v-on:sort-change="changeSort"
             @filter-changed="filterRows"
             :columns="columns"
             :line-numbers="lineNumbers"
@@ -185,7 +185,7 @@
               :get-classes="getClasses"
               :full-colspan="fullColspan"
               :groupIndex="hIndex"
-              @on-select-group-change="toggleSelectGroup($event, headerRow)"
+              v-on:select-group-change="toggleSelectGroup($event, headerRow)"
             >
               <template
                 v-if="hasHeaderRowTemplate"
@@ -203,10 +203,10 @@
             <!-- normal rows here. we loop over all rows -->
             <template
               v-for="(row, index) in headerRow.children"
-              :key="row.originalIndex"
             >
               <tr
                 v-if="groupOptions.collapsable ? headerRow.vgtIsExpanded : true"
+                :key="row.originalIndex"
                 
                 :class="getRowStyleClass(row)"
                 @mouseenter="onMouseenter(row, index)"
@@ -234,9 +234,9 @@
                 </th>
                 <template
                   v-for="(column, i) in columns"
-                  :key="i"
                 >
                   <td
+                    :key="i"
                     v-if="!column.hidden && column.field"
                     @click="onCellClicked(row, column, index, $event)"
                     :class="getClasses(i, 'td', row)"
@@ -272,7 +272,7 @@
               :get-classes="getClasses"
               :full-colspan="fullColspan"
               :groupIndex="index"
-              @on-select-group-change="toggleSelectGroup($event, headerRow)"
+              v-on:select-group-change="toggleSelectGroup($event, headerRow)"
             >
               <template
                 v-if="hasHeaderRowTemplate"
@@ -503,20 +503,20 @@ export default {
   }),
 
   emits: [
-    'on-select-all',
-    'on-selected-rows-change',
-    'on-search',
-    'on-per-page-change',
-    'on-page-change',
+    'select-all',
+    'selected-rows-change',
+    'search',
+    'per-page-change',
+    'page-change',
     'update:isLoading',
-    'on-sort-change',
-    'on-row-click',
-    'on-row-dblclick',
-    'on-row-aux-click',
-    'on-cell-click',
-    'on-row-mouseenter',
-    'on-row-mouseleave',
-    'on-column-filter',
+    'sort-change',
+    'row-click',
+    'row-dblclick',
+    'row-aux-click',
+    'cell-click',
+    'row-mouseenter',
+    'row-mouseleave',
+    'column-filter',
   ],
 
   watch: {
@@ -574,7 +574,7 @@ export default {
 
     selectedRows(newValue, oldValue) {
       if (!isEqual(newValue, oldValue)) {
-        this.$emit('on-selected-rows-change', {
+        this.$emit('selected-rows-change', {
           selectedRows: this.selectedRows,
         });
       }
@@ -818,7 +818,7 @@ export default {
         });
 
         // this is where we emit on search
-        this.$emit('on-search', {
+        this.$emit('search', {
           searchTerm: this.searchTerm,
           rowCount: filteredRows.length,
         });
@@ -982,7 +982,7 @@ export default {
     },
 
     hasRowClickListener() {
-      return this.$attrs && this.$attrs['on-row-click'];
+      return this.$attrs && this.$attrs['row-click'];
     },
   },
 
@@ -1034,9 +1034,9 @@ export default {
 
     handleSearch() {
       this.resetTable();
-      // for remote mode, we need to emit on-search
+      // for remote mode, we need to emit search
       if (this.mode === 'remote') {
-        this.$emit('on-search', {
+        this.$emit('search', {
           searchTerm: this.searchTerm,
         });
       }
@@ -1052,7 +1052,7 @@ export default {
     },
 
     emitSelectedRows() {
-      this.$emit('on-select-all', {
+      this.$emit('select-all', {
         selected: this.selectedRowCount === this.totalRowCount,
         selectedRows: this.selectedRows,
       });
@@ -1118,7 +1118,7 @@ export default {
       if (!pagination.noEmit) {
         const pageChangedEvent = this.pageChangedEvent();
         pageChangedEvent.prevPage = pagination.prevPage;
-        this.$emit('on-page-change', pageChangedEvent);
+        this.$emit('page-change', pageChangedEvent);
         if (this.mode === 'remote') {
           this.$emit('update:isLoading', true);
         }
@@ -1138,7 +1138,7 @@ export default {
       }
       //* update perPage also
       const perPageChangedEvent = this.pageChangedEvent();
-      this.$emit('on-per-page-change', perPageChangedEvent);
+      this.$emit('per-page-change', perPageChangedEvent);
       if (this.mode === 'remote') {
         this.$emit('update:isLoading', true);
       }
@@ -1146,7 +1146,7 @@ export default {
 
     changeSort(sorts) {
       this.sorts = sorts;
-      this.$emit('on-sort-change', sorts);
+      this.$emit('sort-change', sorts);
 
       // every time we change sort we need to reset to page 1
       this.changePage(1);
@@ -1163,7 +1163,7 @@ export default {
     // checkbox click should always do the following
     onCheckboxClicked(row, index, event) {
       row['vgtSelected'] = !row.vgtSelected;
-      this.$emit('on-row-click', {
+      this.$emit('row-click', {
         row,
         pageIndex: index,
         selected: !!row.vgtSelected,
@@ -1172,7 +1172,7 @@ export default {
     },
 
     onRowDoubleClicked(row, index, event) {
-      this.$emit('on-row-dblclick', {
+      this.$emit('row-dblclick', {
         row,
         pageIndex: index,
         selected: !!row.vgtSelected,
@@ -1184,7 +1184,7 @@ export default {
       if (this.selectable && !this.selectOnCheckboxOnly) {
         row['vgtSelected'] = !row.vgtSelected;
       }
-      this.$emit('on-row-click', {
+      this.$emit('row-click', {
         row,
         pageIndex: index,
         selected: !!row.vgtSelected,
@@ -1193,7 +1193,7 @@ export default {
     },
 
     onRowAuxClicked(row, index, event) {
-      this.$emit('on-row-aux-click', {
+      this.$emit('row-aux-click', {
         row,
         pageIndex: index,
         selected: !!row.vgtSelected,
@@ -1202,7 +1202,7 @@ export default {
     },
 
     onCellClicked(row, column, rowIndex, event) {
-      this.$emit('on-cell-click', {
+      this.$emit('cell-click', {
         row,
         column,
         rowIndex,
@@ -1211,14 +1211,14 @@ export default {
     },
 
     onMouseenter(row, index) {
-      this.$emit('on-row-mouseenter', {
+      this.$emit('row-mouseenter', {
         row,
         pageIndex: index,
       });
     },
 
     onMouseleave(row, index) {
-      this.$emit('on-row-mouseleave', {
+      this.$emit('row-mouseleave', {
         row,
         pageIndex: index,
       });
@@ -1360,7 +1360,7 @@ export default {
         // but this only needs to be invoked if filter is changing
         // not when row object is modified.
         if (fromFilter) {
-          this.$emit('on-column-filter', {
+          this.$emit('column-filter', {
             columnFilters: this.columnFilters,
           });
         }

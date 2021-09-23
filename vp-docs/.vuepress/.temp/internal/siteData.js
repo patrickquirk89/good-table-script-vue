@@ -8,7 +8,7 @@ export const siteData = {
       "link",
       {
         "rel": "icon",
-        "href": "/favicon.png"
+        "href": "/vue-good-table-next/favicon.png"
       }
     ]
   ],

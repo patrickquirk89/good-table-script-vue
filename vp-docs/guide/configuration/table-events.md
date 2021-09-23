@@ -1,12 +1,12 @@
 # Table Events
 
-## @on-row-click
+## v-on:row-click
 event emitted on table row click
 ```html
 <vue-good-table
   :columns="columns"
   :rows="rows"
-  @on-row-click="onRowClick">
+  v-on:row-click="onRowClick">
  ```
  ```javascript
  methods: {
@@ -20,13 +20,13 @@ event emitted on table row click
  }
  ```
 
-## @on-row-dblclick
+## v-on:row-dblclick
 event emitted on table row click
 ```html
 <vue-good-table
   :columns="columns"
   :rows="rows"
-  @on-row-dblclick="onRowDoubleClick">
+  v-on:row-dblclick="onRowDoubleClick">
  ```
  ```javascript
  methods: {
@@ -40,13 +40,13 @@ event emitted on table row click
 }
 ```
 
- ## @on-cell-click
+ ## v-on:cell-click
 event emitted on table cell click
 ```html
 <vue-good-table
   :columns="columns"
   :rows="rows"
-  @on-cell-click="onCellClick">
+  v-on:cell-click="onCellClick">
  ```
  ```javascript
  methods: {
@@ -59,13 +59,13 @@ event emitted on table cell click
  }
  ```
  
- ## @on-row-mouseenter
+ ## v-on:row-mouseenter
 event emitted on row mouseenter
 ```html
 <vue-good-table
   :columns="columns"
   :rows="rows"
-  @on-row-mouseenter="onRowMouseover">
+  v-on:row-mouseenter="onRowMouseover">
  ```
  ```javascript
  methods: {
@@ -76,13 +76,13 @@ event emitted on row mouseenter
  }
  ```
  
- ## @on-row-mouseleave
+ ## v-on:row-mouseleave
 event emitted on table row mouseleave
 ```html
 <vue-good-table
   :columns="columns"
   :rows="rows"
-  @on-row-mouseleave="onRowMouseleave">
+  v-on:row-mouseleave="onRowMouseleave">
  ```
  ```javascript
  methods: {
@@ -93,13 +93,13 @@ event emitted on table row mouseleave
  }
  ```
  
-## @on-search
+## v-on:search
 event emitted on global search (when global search is enabled)
 ```html
 <vue-good-table
   :columns="columns"
   :rows="rows"
-  @on-search="onSearch">
+  v-on:search="onSearch">
  ```
  ```javascript
  methods: {
@@ -110,13 +110,13 @@ event emitted on global search (when global search is enabled)
  }
  ```
  
-## @on-page-change
+## v-on:page-change
 event emitted on pagination page change (when pagination is enabled)
 ```html
 <vue-good-table
   :columns="columns"
   :rows="rows"
-  @on-page-change="onPageChange">
+  v-on:page-change="onPageChange">
  ```
  ```javascript
  methods: {
@@ -129,13 +129,13 @@ event emitted on pagination page change (when pagination is enabled)
  }
  ```
  
-## @on-per-page-change
+## v-on:per-page-change
 event emitted on per page dropdown change (when pagination is enabled)
 ```html
 <vue-good-table
   :columns="columns"
   :rows="rows"
-  @on-per-page-change="onPageChange">
+  v-on:per-page-change="onPageChange">
 ```
 ```javascript
 methods: {
@@ -147,7 +147,7 @@ methods: {
 }
 ```
 
-## @on-sort-change
+## v-on:sort-change
 event emitted on sort change.
 ::: tip
 vue-good-table now supports sorting by multiple columns, so the params
@@ -158,7 +158,7 @@ is an array.
 <vue-good-table
   :columns="columns"
   :rows="rows"
-  @on-sort-change="onSortChange">
+  v-on:sort-change="onSortChange">
 ```
 ```javascript
 methods: {
@@ -170,13 +170,13 @@ methods: {
 ```
 
  
-## @on-column-filter
+## v-on:column-filter
 event emitted when column is filtered (only emitted for remote mode)
 ```html
 <vue-good-table
   :columns="columns"
   :rows="rows"
-  @on-column-filter="onColumnFilter">
+  v-on:column-filter="onColumnFilter">
  ```
  ```javascript
  methods: {
@@ -187,14 +187,14 @@ event emitted when column is filtered (only emitted for remote mode)
  }
  ```
 
- ## @on-select-all
+ ## v-on:select-all
 event emitted when all is selected (only emitted for checkbox tables)
 ```html
 <vue-good-table
   :columns="columns"
   :rows="rows"
   :select-options="{ enabled: true }"
-  @on-select-all="onSelectAll">
+  v-on:select-all="onSelectAll">
  ```
  ```javascript
  methods: {
@@ -205,14 +205,14 @@ event emitted when all is selected (only emitted for checkbox tables)
  }
  ```
 
- ## @on-selected-rows-change
+ ## v-on:selected-rows-change
  event emitted whenever selection is changed (on checkbox tables)
  ```html
 <vue-good-table
   :columns="columns"
   :rows="rows"
   :select-options="{ enabled: true }"
-  @on-selected-rows-change="selectionChanged">
+  v-on:selected-rows-change="selectionChanged">
  ```
  ```javascript
  methods: {

@@ -10,10 +10,10 @@
       enabled: true,
       selectAllByGroup: true,
     }"
-    @on-select-all="onSelectAll"
-    @on-search="onSelectAll"
-    @on-row-mouseenter="onMouseover"
-    @on-row-mouseleave="onMouseover"
+    v-on:select-all="onSelectAll"
+    v-on:search="onSelectAll"
+    v-on:row-mouseenter="onMouseover"
+    v-on:row-mouseleave="onMouseover"
     :search-options="{
       enabled: true,
     }"

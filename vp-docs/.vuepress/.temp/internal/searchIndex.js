@@ -33,189 +33,6 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "Customizations",
-    "headers": [
-      {
-        "level": 2,
-        "title": "Custom Row Template",
-        "slug": "custom-row-template",
-        "children": [
-          {
-            "level": 3,
-            "title": "Result",
-            "slug": "result",
-            "children": []
-          }
-        ]
-      },
-      {
-        "level": 2,
-        "title": "Adding custom columns",
-        "slug": "adding-custom-columns",
-        "children": [
-          {
-            "level": 3,
-            "title": "Result",
-            "slug": "result-1",
-            "children": []
-          }
-        ]
-      },
-      {
-        "level": 2,
-        "title": "Custom column headers",
-        "slug": "custom-column-headers",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Custom column filters",
-        "slug": "custom-column-filters",
-        "children": [
-          {
-            "level": 3,
-            "title": "Upgrading from versions 2.20.0-2.21.0",
-            "slug": "upgrading-from-versions-2-20-0-2-21-0",
-            "children": []
-          }
-        ]
-      },
-      {
-        "level": 2,
-        "title": "Custom pagination",
-        "slug": "custom-pagination",
-        "children": []
-      }
-    ],
-    "path": "/guide/advanced/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "Checkbox Table",
-    "headers": [
-      {
-        "level": 2,
-        "title": "Configuration",
-        "slug": "configuration",
-        "children": [
-          {
-            "level": 3,
-            "title": "Example",
-            "slug": "example",
-            "children": []
-          }
-        ]
-      },
-      {
-        "level": 2,
-        "title": "Selected row action slot",
-        "slug": "selected-row-action-slot",
-        "children": [
-          {
-            "level": 3,
-            "title": "Example",
-            "slug": "example-1",
-            "children": []
-          }
-        ]
-      }
-    ],
-    "path": "/guide/advanced/checkbox-table.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "Grouped Table",
-    "headers": [
-      {
-        "level": 2,
-        "title": "Customizing Header Row",
-        "slug": "customizing-header-row",
-        "children": [
-          {
-            "level": 3,
-            "title": "When mode is 'span'",
-            "slug": "when-mode-is-span",
-            "children": []
-          },
-          {
-            "level": 3,
-            "title": "When mode is not 'span'",
-            "slug": "when-mode-is-not-span",
-            "children": []
-          }
-        ]
-      },
-      {
-        "level": 2,
-        "title": "Collapsable Rows",
-        "slug": "collapsable-rows",
-        "children": []
-      }
-    ],
-    "path": "/guide/advanced/grouped-table.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "Server Side Table",
-    "headers": [
-      {
-        "level": 2,
-        "title": "Why Remote Mode?",
-        "slug": "why-remote-mode",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Prep Work",
-        "slug": "prep-work",
-        "children": [
-          {
-            "level": 3,
-            "title": "What do we send to server?",
-            "slug": "what-do-we-send-to-server",
-            "children": []
-          },
-          {
-            "level": 3,
-            "title": "What does the server send back?",
-            "slug": "what-does-the-server-send-back",
-            "children": []
-          }
-        ]
-      },
-      {
-        "level": 2,
-        "title": "Set mode to remote",
-        "slug": "set-mode-to-remote",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Provide handlers for user events",
-        "slug": "provide-handlers-for-user-events",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "So, what is happening?",
-        "slug": "so-what-is-happening",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Conclusion",
-        "slug": "conclusion",
-        "children": []
-      }
-    ],
-    "path": "/guide/advanced/remote-workflow.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
     "title": "Table Options",
     "headers": [
       {
@@ -624,78 +441,261 @@ export const searchIndex = [
     "headers": [
       {
         "level": 2,
-        "title": "@on-row-click",
-        "slug": "on-row-click",
+        "title": "v-on:row-click",
+        "slug": "v-on-row-click",
         "children": []
       },
       {
         "level": 2,
-        "title": "@on-row-dblclick",
-        "slug": "on-row-dblclick",
+        "title": "v-on:row-dblclick",
+        "slug": "v-on-row-dblclick",
         "children": []
       },
       {
         "level": 2,
-        "title": "@on-cell-click",
-        "slug": "on-cell-click",
+        "title": "v-on:cell-click",
+        "slug": "v-on-cell-click",
         "children": []
       },
       {
         "level": 2,
-        "title": "@on-row-mouseenter",
-        "slug": "on-row-mouseenter",
+        "title": "v-on:row-mouseenter",
+        "slug": "v-on-row-mouseenter",
         "children": []
       },
       {
         "level": 2,
-        "title": "@on-row-mouseleave",
-        "slug": "on-row-mouseleave",
+        "title": "v-on:row-mouseleave",
+        "slug": "v-on-row-mouseleave",
         "children": []
       },
       {
         "level": 2,
-        "title": "@on-search",
-        "slug": "on-search",
+        "title": "v-on:search",
+        "slug": "v-on-search",
         "children": []
       },
       {
         "level": 2,
-        "title": "@on-page-change",
-        "slug": "on-page-change",
+        "title": "v-on:page-change",
+        "slug": "v-on-page-change",
         "children": []
       },
       {
         "level": 2,
-        "title": "@on-per-page-change",
-        "slug": "on-per-page-change",
+        "title": "v-on:per-page-change",
+        "slug": "v-on-per-page-change",
         "children": []
       },
       {
         "level": 2,
-        "title": "@on-sort-change",
-        "slug": "on-sort-change",
+        "title": "v-on:sort-change",
+        "slug": "v-on-sort-change",
         "children": []
       },
       {
         "level": 2,
-        "title": "@on-column-filter",
-        "slug": "on-column-filter",
+        "title": "v-on:column-filter",
+        "slug": "v-on-column-filter",
         "children": []
       },
       {
         "level": 2,
-        "title": "@on-select-all",
-        "slug": "on-select-all",
+        "title": "v-on:select-all",
+        "slug": "v-on-select-all",
         "children": []
       },
       {
         "level": 2,
-        "title": "@on-selected-rows-change",
-        "slug": "on-selected-rows-change",
+        "title": "v-on:selected-rows-change",
+        "slug": "v-on-selected-rows-change",
         "children": []
       }
     ],
     "path": "/guide/configuration/table-events.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "Customizations",
+    "headers": [
+      {
+        "level": 2,
+        "title": "Custom Row Template",
+        "slug": "custom-row-template",
+        "children": [
+          {
+            "level": 3,
+            "title": "Result",
+            "slug": "result",
+            "children": []
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Adding custom columns",
+        "slug": "adding-custom-columns",
+        "children": [
+          {
+            "level": 3,
+            "title": "Result",
+            "slug": "result-1",
+            "children": []
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Custom column headers",
+        "slug": "custom-column-headers",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Custom column filters",
+        "slug": "custom-column-filters",
+        "children": [
+          {
+            "level": 3,
+            "title": "Upgrading from versions 2.20.0-2.21.0",
+            "slug": "upgrading-from-versions-2-20-0-2-21-0",
+            "children": []
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Custom pagination",
+        "slug": "custom-pagination",
+        "children": []
+      }
+    ],
+    "path": "/guide/advanced/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "Checkbox Table",
+    "headers": [
+      {
+        "level": 2,
+        "title": "Configuration",
+        "slug": "configuration",
+        "children": [
+          {
+            "level": 3,
+            "title": "Example",
+            "slug": "example",
+            "children": []
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Selected row action slot",
+        "slug": "selected-row-action-slot",
+        "children": [
+          {
+            "level": 3,
+            "title": "Example",
+            "slug": "example-1",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "path": "/guide/advanced/checkbox-table.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "Grouped Table",
+    "headers": [
+      {
+        "level": 2,
+        "title": "Customizing Header Row",
+        "slug": "customizing-header-row",
+        "children": [
+          {
+            "level": 3,
+            "title": "When mode is 'span'",
+            "slug": "when-mode-is-span",
+            "children": []
+          },
+          {
+            "level": 3,
+            "title": "When mode is not 'span'",
+            "slug": "when-mode-is-not-span",
+            "children": []
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Collapsable Rows",
+        "slug": "collapsable-rows",
+        "children": []
+      }
+    ],
+    "path": "/guide/advanced/grouped-table.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "Server Side Table",
+    "headers": [
+      {
+        "level": 2,
+        "title": "Why Remote Mode?",
+        "slug": "why-remote-mode",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Prep Work",
+        "slug": "prep-work",
+        "children": [
+          {
+            "level": 3,
+            "title": "What do we send to server?",
+            "slug": "what-do-we-send-to-server",
+            "children": []
+          },
+          {
+            "level": 3,
+            "title": "What does the server send back?",
+            "slug": "what-does-the-server-send-back",
+            "children": []
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Set mode to remote",
+        "slug": "set-mode-to-remote",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Provide handlers for user events",
+        "slug": "provide-handlers-for-user-events",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "So, what is happening?",
+        "slug": "so-what-is-happening",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Conclusion",
+        "slug": "conclusion",
+        "children": []
+      }
+    ],
+    "path": "/guide/advanced/remote-workflow.html",
     "pathLocale": "/",
     "extraFields": []
   },

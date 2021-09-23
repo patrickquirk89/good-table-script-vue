@@ -15,7 +15,7 @@
     searchFn: mySearchFn,
     placeholder: <span class="token punctuation">'</span>Search this table<span class="token punctuation">'</span>,
     externalQuery: searchQuery
-    @on-search=<span class="token punctuation">"</span></span><span class="token attr-name">onSearch"</span>
+    v-on:search=<span class="token punctuation">"</span></span><span class="token attr-name">onSearch"</span>
   <span class="token attr-name">}"</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>vue-good-table</span><span class="token punctuation">></span></span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h2 id="enabled" tabindex="-1"><a class="header-anchor" href="#enabled" aria-hidden="true">#</a> enabled</h2>

@@ -109,8 +109,8 @@ export default {
     paginated: {},
   },
   emits: [
-    'on-toggle-select-all',
-    'on-sort-change',
+    'toggle-select-all',
+    'sort-change',
     'filter-changed',
   ],
   watch: {
@@ -152,7 +152,7 @@ export default {
       this.$refs['filter-row'].reset(true);
     },
     toggleSelectAll() {
-      this.$emit('on-toggle-select-all');
+      this.$emit('toggle-select-all');
     },
     isSortableColumn(column) {
       const { sortable } = column;
@@ -168,12 +168,12 @@ export default {
       } else {
         this.sorts = primarySort(this.sorts, column);
       }
-      this.$emit('on-sort-change', this.sorts);
+      this.$emit('sort-change', this.sorts);
     },
 
     setInitialSort(sorts) {
       this.sorts = sorts;
-      this.$emit('on-sort-change', this.sorts);
+      this.$emit('sort-change', this.sorts);
     },
 
     getColumnSort(column) {

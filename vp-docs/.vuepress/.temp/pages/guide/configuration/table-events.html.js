@@ -8,74 +8,74 @@ export const data = {
   "headers": [
     {
       "level": 2,
-      "title": "@on-row-click",
-      "slug": "on-row-click",
+      "title": "v-on:row-click",
+      "slug": "v-on-row-click",
       "children": []
     },
     {
       "level": 2,
-      "title": "@on-row-dblclick",
-      "slug": "on-row-dblclick",
+      "title": "v-on:row-dblclick",
+      "slug": "v-on-row-dblclick",
       "children": []
     },
     {
       "level": 2,
-      "title": "@on-cell-click",
-      "slug": "on-cell-click",
+      "title": "v-on:cell-click",
+      "slug": "v-on-cell-click",
       "children": []
     },
     {
       "level": 2,
-      "title": "@on-row-mouseenter",
-      "slug": "on-row-mouseenter",
+      "title": "v-on:row-mouseenter",
+      "slug": "v-on-row-mouseenter",
       "children": []
     },
     {
       "level": 2,
-      "title": "@on-row-mouseleave",
-      "slug": "on-row-mouseleave",
+      "title": "v-on:row-mouseleave",
+      "slug": "v-on-row-mouseleave",
       "children": []
     },
     {
       "level": 2,
-      "title": "@on-search",
-      "slug": "on-search",
+      "title": "v-on:search",
+      "slug": "v-on-search",
       "children": []
     },
     {
       "level": 2,
-      "title": "@on-page-change",
-      "slug": "on-page-change",
+      "title": "v-on:page-change",
+      "slug": "v-on-page-change",
       "children": []
     },
     {
       "level": 2,
-      "title": "@on-per-page-change",
-      "slug": "on-per-page-change",
+      "title": "v-on:per-page-change",
+      "slug": "v-on-per-page-change",
       "children": []
     },
     {
       "level": 2,
-      "title": "@on-sort-change",
-      "slug": "on-sort-change",
+      "title": "v-on:sort-change",
+      "slug": "v-on-sort-change",
       "children": []
     },
     {
       "level": 2,
-      "title": "@on-column-filter",
-      "slug": "on-column-filter",
+      "title": "v-on:column-filter",
+      "slug": "v-on-column-filter",
       "children": []
     },
     {
       "level": 2,
-      "title": "@on-select-all",
-      "slug": "on-select-all",
+      "title": "v-on:select-all",
+      "slug": "v-on-select-all",
       "children": []
     },
     {
       "level": 2,
-      "title": "@on-selected-rows-change",
-      "slug": "on-selected-rows-change",
+      "title": "v-on:selected-rows-change",
+      "slug": "v-on-selected-rows-change",
       "children": []
     }
   ],

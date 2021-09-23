@@ -5,10 +5,10 @@
     :rows="rows"
     :totalRows="totalRecords"
     mode="remote"
-    @on-page-change="onPageChange"
-    @on-sort-change="onSortChange"
-    @on-column-filter="onColumnFilter"
-    @on-per-page-change="onPerPageChange"
+    v-on:page-change="onPageChange"
+    v-on:sort-change="onSortChange"
+    v-on:column-filter="onColumnFilter"
+    v-on:per-page-change="onPerPageChange"
     compactMode
     :pagination-options="{
       enabled: true,

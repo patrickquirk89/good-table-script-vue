@@ -118,7 +118,7 @@ export default {
   },
   emits: [
     'vgtExpand',
-    'on-select-group-change',
+    'select-group-change',
   ],
   data() {
     return {
@@ -138,7 +138,7 @@ export default {
       return currentIndex === this.collapsable;
     },
     toggleSelectGroup(event) {
-      this.$emit('on-select-group-change', {
+      this.$emit('select-group-change', {
         groupIndex: this.groupIndex, checked: event.target.checked
       });
     }

@@ -5,7 +5,7 @@ module.exports = {
   description: 'A powerful data table plugin for Vue 3.X',
   base: '/vue-good-table-next/',
   head: [
-    ['link', { rel: 'icon', href: '/favicon.png' }]
+    ['link', { rel: 'icon', href: '/vue-good-table-next/favicon.png' }]
   ],
   
   plugins: [

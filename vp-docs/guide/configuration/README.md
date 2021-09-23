@@ -135,9 +135,9 @@ You don't have to have global search enabled to use this slot.
 <vue-good-table
   :columns="columns"
   :rows="rows">
-  <div slot="table-actions">
+  <template #table-actions>
     This will show up on the top right of the table. 
-  </div>
+  </template>
 </vue-good-table>
 ```
 <action-slot-table />
@@ -151,9 +151,9 @@ If you want a space for your buttons between pagination and the table. This is t
 <vue-good-table
   :columns="columns"
   :rows="rows">
-  <div slot="table-actions-bottom">
+  <template #table-actions-bottom>
     This will show up on the bottom of the table. 
-  </div>
+  </template>
 </vue-good-table>
 ```
 
@@ -164,9 +164,9 @@ You can provide html for empty state slot as well. Example:
 <vue-good-table
   :columns="columns"
   :rows="rows">
-  <div slot="emptystate">
+  <template #emptystate>
     This will show up when there are no rows
-  </div>
+  </template>
 </vue-good-table>
 ```
 

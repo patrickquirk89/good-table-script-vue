@@ -10,7 +10,7 @@ type: `Object`
 Object containing select options
 ```html
 <vue-good-table
-  @on-selected-rows-change="selectionChanged"
+  v-on:selected-rows-change="selectionChanged"
   :columns="columns"
   :rows="rows"
   :select-options="{
@@ -33,7 +33,7 @@ this.$refs['my-table'].selectedRows;
 ### Example
 ```vue
 <vue-good-table
-  @on-selected-rows-change="selectionChanged"
+  v-on:selected-rows-change="selectionChanged"
   :columns="columns"
   :rows="rows"
   :select-options="{ enabled: true }"
@@ -51,16 +51,16 @@ Once you select a row, an info bar shows up. This bar allows for a customizable 
 
 ```html
 <vue-good-table
-  @on-selected-rows-change="selectionChanged"
+  v-on:selected-rows-change="selectionChanged"
   :columns="columns"
   :rows="rows"
   :select-options="{ 
     enabled: true,
   }"
   :search-options="{ enabled: true }">
-  <div slot="selected-row-actions">
+  <template #selected-row-actions>
     <button>Action 1</button>
-  </div>
+  </template>
 </vue-good-table>
 <!-- click on a row below to show the action button -->
 ```

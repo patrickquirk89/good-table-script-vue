@@ -6,16 +6,16 @@
 Install with npm:
 
 ```bash
-npm install --save vue-good-table
+npm install --save vue-good-table-next
 ```
 
 Import globally in app:
 
 ```javascript
-import VueGoodTablePlugin from 'vue-good-table';
+import VueGoodTablePlugin from 'vue-good-table-next';
 
 // import the styles
-import 'vue-good-table/dist/vue-good-table.css'
+import 'vue-good-table-next/dist/vue-good-table-next.css'
 
 Vue.use(VueGoodTablePlugin);
 ```
@@ -23,8 +23,8 @@ Vue.use(VueGoodTablePlugin);
 **or** you can import into your component:
 ```js
 // import the styles
-import 'vue-good-table/dist/vue-good-table.css'
-import { VueGoodTable } from 'vue-good-table';
+import 'vue-good-table-next/dist/vue-good-table-next.css'
+import { VueGoodTable } from 'vue-good-table-next';
 
 // add to component
 components: {
@@ -94,10 +94,10 @@ Create your own plugin by creating a file called `vue-good-table.js` inside your
 
 ```
 import Vue from 'vue'
-import VueGoodTablePlugin from 'vue-good-table';
+import VueGoodTablePlugin from 'vue-good-table-next';
 
 // import the styles
-import 'vue-good-table/dist/vue-good-table.css'
+import 'vue-good-table-next/dist/vue-good-table-next.css'
 
 Vue.use(VueGoodTablePlugin);
 ```
@@ -108,7 +108,7 @@ Next we need to declare the plugin inside your `nuxt.config.js` like so:
 
 ```
 plugins: [
-  { src: '~/plugins/vue-good-table', ssr: false }
+  { src: '~/plugins/vue-good-table-next', ssr: false }
 ],
 ```
 
