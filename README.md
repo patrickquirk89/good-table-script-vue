@@ -1,14 +1,14 @@
-# (WIP) Vue-good-table-next
+# Vue-good-table-next
 
 | :warning: WARNING          |
 |:---------------------------|
-| This project is a port of Vue-good-table for Vue 3.x. The work is currently in progress and many changes could be made shortly, hence the project is not yet ready to use in a production environment.      |
+| This project is a port of Vue-good-table for Vue 3.x. The current version is stable enough to start developing new projects but work is still in progress and changes could be made in the short-term. Thus the project is not yet intended to be used in a production environment. |
 
-<!-- [![npm](https://img.shields.io/npm/dm/vue-good-table.svg?style=flat-square)](https://www.npmjs.com/package/vue-good-table)
-[![npm](https://img.shields.io/github/package-json/v/xaksis/vue-good-table.svg?style=flat-square)](https://github.com/xaksis/vue-good-table/releases)
-[![npm](https://img.shields.io/github/license/xaksis/vue-good-table.svg?style=flat-square)](https://github.com/xaksis/vue-good-table/blob/master/LICENSE)
-[![](https://data.jsdelivr.com/v1/package/npm/vue-good-table/badge)](https://www.jsdelivr.com/package/npm/vue-good-table)
-[![Twitter Follow](https://img.shields.io/twitter/follow/crayonbytes.svg?label=Follow&style=social)](https://twitter.com/crayonbytes) -->
+[![npm](https://img.shields.io/npm/dm/vue-good-table-next.svg?style=flat-square)](https://www.npmjs.com/package/vue-good-table-next)
+[![npm](https://img.shields.io/github/package-json/v/borisflesch/vue-good-table.svg?style=flat-square)](https://github.com/borisflesch/vue-good-table-next/releases)
+[![npm](https://img.shields.io/github/license/borisflesch/vue-good-table-next.svg?style=flat-square)](https://github.com/borisflesch/vue-good-table-next/master/LICENSE)
+[![](https://data.jsdelivr.com/v1/package/npm/vue-good-table-next/badge)](https://www.jsdelivr.com/package/npm/vue-good-table-next)
+[![Twitter Follow](https://img.shields.io/twitter/follow/borisflesch.svg?label=Follow&style=social)](https://twitter.com/borisflesch)
 
 An easy to use, clean and powerful data table for Vue with essential features like sorting, column filtering, pagination and much more - [borisflesch.github.io/vue-good-table-next/](https://borisflesch.github.io/vue-good-table-next/)
 
