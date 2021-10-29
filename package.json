@@ -6,6 +6,13 @@
     "name": "boris",
     "email": "boris@singlequote.net"
   },
+  "contributors": [
+    {
+      "name" : "xaksis",
+      "url" : "https://github.com/xaksis"
+    }
+  ],
+  "license": "MIT",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "test:unit": "vue-cli-service test:unit",

@@ -2737,8 +2737,8 @@ const _sfc_main$4 = {
   ],
   emits: [
     'input',
-    'on-keyup',
-    'on-enter',
+    'keyup',
+    'enter',
   ],
   data() {
     return {
@@ -2756,10 +2756,10 @@ const _sfc_main$4 = {
   methods: {
     updateValue(value) {
       this.$emit('input', value);
-      this.$emit('on-keyup', value);
+      this.$emit('keyup', value);
     },
     entered(value) {
-      this.$emit('on-enter', value);
+      this.$emit('enter', value);
     },
     getId() {
       return `vgt-search-${Math.floor(Math.random() * Date.now())}`;
@@ -3178,8 +3178,8 @@ const _sfc_main$2 = {
     paginated: {},
   },
   emits: [
-    'on-toggle-select-all',
-    'on-sort-change',
+    'toggle-select-all',
+    'sort-change',
     'filter-changed',
   ],
   watch: {
@@ -3221,7 +3221,7 @@ const _sfc_main$2 = {
       this.$refs['filter-row'].reset(true);
     },
     toggleSelectAll() {
-      this.$emit('on-toggle-select-all');
+      this.$emit('toggle-select-all');
     },
     isSortableColumn(column) {
       const { sortable } = column;
@@ -3237,12 +3237,12 @@ const _sfc_main$2 = {
       } else {
         this.sorts = primarySort(this.sorts, column);
       }
-      this.$emit('on-sort-change', this.sorts);
+      this.$emit('sort-change', this.sorts);
     },
 
     setInitialSort(sorts) {
       this.sorts = sorts;
-      this.$emit('on-sort-change', this.sorts);
+      this.$emit('sort-change', this.sorts);
     },
 
     getColumnSort(column) {
@@ -3476,7 +3476,7 @@ const _sfc_main$1 = {
   },
   emits: [
     'vgtExpand',
-    'on-select-group-change',
+    'select-group-change',
   ],
   data() {
     return {
@@ -3496,7 +3496,7 @@ const _sfc_main$1 = {
       return currentIndex === this.collapsable;
     },
     toggleSelectGroup(event) {
-      this.$emit('on-select-group-change', {
+      this.$emit('select-group-change', {
         groupIndex: this.groupIndex, checked: event.target.checked
       });
     }
@@ -5782,28 +5782,28 @@ var unescapedLatinCharacterRegExp$1 = /[a-zA-Z]/;
  * | Day of week (formatting)        | E..EEE  | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 | EEEE    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 | EEEEE   | M, T, W, T, F, S, S               |       |
- * |                                 | EEEEEE  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * |                                 | EEEEEE  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
  * | ISO day of week (formatting)    | i       | 1, 2, 3, ..., 7                   | 7     |
  * |                                 | io      | 1st, 2nd, ..., 7th                | 7     |
  * |                                 | ii      | 01, 02, ..., 07                   | 7     |
  * |                                 | iii     | Mon, Tue, Wed, ..., Sun           | 7     |
  * |                                 | iiii    | Monday, Tuesday, ..., Sunday      | 2,7   |
  * |                                 | iiiii   | M, T, W, T, F, S, S               | 7     |
- * |                                 | iiiiii  | Mo, Tu, We, Th, Fr, Su, Sa        | 7     |
+ * |                                 | iiiiii  | Mo, Tu, We, Th, Fr, Sa, Su        | 7     |
  * | Local day of week (formatting)  | e       | 2, 3, 4, ..., 1                   |       |
  * |                                 | eo      | 2nd, 3rd, ..., 1st                | 7     |
  * |                                 | ee      | 02, 03, ..., 01                   |       |
  * |                                 | eee     | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 | eeee    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 | eeeee   | M, T, W, T, F, S, S               |       |
- * |                                 | eeeeee  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * |                                 | eeeeee  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
  * | Local day of week (stand-alone) | c       | 2, 3, 4, ..., 1                   |       |
  * |                                 | co      | 2nd, 3rd, ..., 1st                | 7     |
  * |                                 | cc      | 02, 03, ..., 01                   |       |
  * |                                 | ccc     | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 | cccc    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 | ccccc   | M, T, W, T, F, S, S               |       |
- * |                                 | cccccc  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * |                                 | cccccc  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
  * | AM, PM                          | a..aa   | AM, PM                            |       |
  * |                                 | aaa     | am, pm                            |       |
  * |                                 | aaaa    | a.m., p.m.                        | 2     |
@@ -7796,28 +7796,28 @@ var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
  * | Day of week (formatting)        |  90 | E..EEE  | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 |     | EEEE    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 |     | EEEEE   | M, T, W, T, F, S, S               |       |
- * |                                 |     | EEEEEE  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * |                                 |     | EEEEEE  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
  * | ISO day of week (formatting)    |  90 | i       | 1, 2, 3, ..., 7                   | 5     |
  * |                                 |     | io      | 1st, 2nd, ..., 7th                | 5     |
  * |                                 |     | ii      | 01, 02, ..., 07                   | 5     |
  * |                                 |     | iii     | Mon, Tue, Wed, ..., Sun           | 5     |
  * |                                 |     | iiii    | Monday, Tuesday, ..., Sunday      | 2,5   |
  * |                                 |     | iiiii   | M, T, W, T, F, S, S               | 5     |
- * |                                 |     | iiiiii  | Mo, Tu, We, Th, Fr, Su, Sa        | 5     |
+ * |                                 |     | iiiiii  | Mo, Tu, We, Th, Fr, Sa, Su        | 5     |
  * | Local day of week (formatting)  |  90 | e       | 2, 3, 4, ..., 1                   |       |
  * |                                 |     | eo      | 2nd, 3rd, ..., 1st                | 5     |
  * |                                 |     | ee      | 02, 03, ..., 01                   |       |
  * |                                 |     | eee     | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 |     | eeee    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 |     | eeeee   | M, T, W, T, F, S, S               |       |
- * |                                 |     | eeeeee  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * |                                 |     | eeeeee  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
  * | Local day of week (stand-alone) |  90 | c       | 2, 3, 4, ..., 1                   |       |
  * |                                 |     | co      | 2nd, 3rd, ..., 1st                | 5     |
  * |                                 |     | cc      | 02, 03, ..., 01                   |       |
  * |                                 |     | ccc     | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 |     | cccc    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 |     | ccccc   | M, T, W, T, F, S, S               |       |
- * |                                 |     | cccccc  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * |                                 |     | cccccc  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
  * | AM, PM                          |  80 | a..aaa  | AM, PM                            |       |
  * |                                 |     | aaaa    | a.m., p.m.                        | 2     |
  * |                                 |     | aaaaa   | a, p                              |       |
@@ -8225,10 +8225,23 @@ const date = Object.assign({}, defaultType);
 
 date.isRight = true;
 
+/**
+ * Compare the two dates and return 1 if the first date is after the second, -1 if the first date is before the second or 0 if dates are equal.
+ * @param {*} x Date 1
+ * @param {*} y Date 2
+ * @param {Object} column Additional parameters (e.g. dateInputFormat, dateOutputFormat)
+ * @returns 
+ */
 date.compare = function (x, y, column) {
   function cook(d) {
     if (column && column.dateInputFormat) {
       return parse(`${d}`, `${column.dateInputFormat}`, new Date());
+    } else if (typeof d === 'string') {
+      try {
+        return Date.parse(d);
+      } catch(err) {
+        return d;
+      }
     }
     return d;
   }
@@ -8499,20 +8512,20 @@ const _sfc_main = {
   }),
 
   emits: [
-    'on-select-all',
-    'on-selected-rows-change',
-    'on-search',
-    'on-per-page-change',
-    'on-page-change',
+    'select-all',
+    'selected-rows-change',
+    'search',
+    'per-page-change',
+    'page-change',
     'update:isLoading',
-    'on-sort-change',
-    'on-row-click',
-    'on-row-dblclick',
-    'on-row-aux-click',
-    'on-cell-click',
-    'on-row-mouseenter',
-    'on-row-mouseleave',
-    'on-column-filter',
+    'sort-change',
+    'row-click',
+    'row-dblclick',
+    'row-aux-click',
+    'cell-click',
+    'row-mouseenter',
+    'row-mouseleave',
+    'column-filter',
   ],
 
   watch: {
@@ -8570,7 +8583,7 @@ const _sfc_main = {
 
     selectedRows(newValue, oldValue) {
       if (!isEqual(newValue, oldValue)) {
-        this.$emit('on-selected-rows-change', {
+        this.$emit('selected-rows-change', {
           selectedRows: this.selectedRows,
         });
       }
@@ -8814,7 +8827,7 @@ const _sfc_main = {
         });
 
         // this is where we emit on search
-        this.$emit('on-search', {
+        this.$emit('search', {
           searchTerm: this.searchTerm,
           rowCount: filteredRows.length,
         });
@@ -8978,7 +8991,7 @@ const _sfc_main = {
     },
 
     hasRowClickListener() {
-      return this.$attrs && this.$attrs['on-row-click'];
+      return this.$attrs && this.$attrs['row-click'];
     },
   },
 
@@ -9030,9 +9043,9 @@ const _sfc_main = {
 
     handleSearch() {
       this.resetTable();
-      // for remote mode, we need to emit on-search
+      // for remote mode, we need to emit search
       if (this.mode === 'remote') {
-        this.$emit('on-search', {
+        this.$emit('search', {
           searchTerm: this.searchTerm,
         });
       }
@@ -9048,7 +9061,7 @@ const _sfc_main = {
     },
 
     emitSelectedRows() {
-      this.$emit('on-select-all', {
+      this.$emit('select-all', {
         selected: this.selectedRowCount === this.totalRowCount,
         selectedRows: this.selectedRows,
       });
@@ -9081,7 +9094,7 @@ const _sfc_main = {
 
     toggleSelectGroup(event, headerRow) {
       headerRow.children.forEach((row) => {
-        row['vgtSelected'] = eventchecked;
+        row['vgtSelected'] = event;
       });
     },
 
@@ -9114,7 +9127,7 @@ const _sfc_main = {
       if (!pagination.noEmit) {
         const pageChangedEvent = this.pageChangedEvent();
         pageChangedEvent.prevPage = pagination.prevPage;
-        this.$emit('on-page-change', pageChangedEvent);
+        this.$emit('page-change', pageChangedEvent);
         if (this.mode === 'remote') {
           this.$emit('update:isLoading', true);
         }
@@ -9134,7 +9147,7 @@ const _sfc_main = {
       }
       //* update perPage also
       const perPageChangedEvent = this.pageChangedEvent();
-      this.$emit('on-per-page-change', perPageChangedEvent);
+      this.$emit('per-page-change', perPageChangedEvent);
       if (this.mode === 'remote') {
         this.$emit('update:isLoading', true);
       }
@@ -9142,7 +9155,7 @@ const _sfc_main = {
 
     changeSort(sorts) {
       this.sorts = sorts;
-      this.$emit('on-sort-change', sorts);
+      this.$emit('sort-change', sorts);
 
       // every time we change sort we need to reset to page 1
       this.changePage(1);
@@ -9159,7 +9172,7 @@ const _sfc_main = {
     // checkbox click should always do the following
     onCheckboxClicked(row, index, event) {
       row['vgtSelected'] = !row.vgtSelected;
-      this.$emit('on-row-click', {
+      this.$emit('row-click', {
         row,
         pageIndex: index,
         selected: !!row.vgtSelected,
@@ -9168,7 +9181,7 @@ const _sfc_main = {
     },
 
     onRowDoubleClicked(row, index, event) {
-      this.$emit('on-row-dblclick', {
+      this.$emit('row-dblclick', {
         row,
         pageIndex: index,
         selected: !!row.vgtSelected,
@@ -9180,7 +9193,7 @@ const _sfc_main = {
       if (this.selectable && !this.selectOnCheckboxOnly) {
         row['vgtSelected'] = !row.vgtSelected;
       }
-      this.$emit('on-row-click', {
+      this.$emit('row-click', {
         row,
         pageIndex: index,
         selected: !!row.vgtSelected,
@@ -9189,7 +9202,7 @@ const _sfc_main = {
     },
 
     onRowAuxClicked(row, index, event) {
-      this.$emit('on-row-aux-click', {
+      this.$emit('row-aux-click', {
         row,
         pageIndex: index,
         selected: !!row.vgtSelected,
@@ -9198,7 +9211,7 @@ const _sfc_main = {
     },
 
     onCellClicked(row, column, rowIndex, event) {
-      this.$emit('on-cell-click', {
+      this.$emit('cell-click', {
         row,
         column,
         rowIndex,
@@ -9207,14 +9220,14 @@ const _sfc_main = {
     },
 
     onMouseenter(row, index) {
-      this.$emit('on-row-mouseenter', {
+      this.$emit('row-mouseenter', {
         row,
         pageIndex: index,
       });
     },
 
     onMouseleave(row, index) {
-      this.$emit('on-row-mouseleave', {
+      this.$emit('row-mouseleave', {
         row,
         pageIndex: index,
       });
@@ -9356,7 +9369,7 @@ const _sfc_main = {
         // but this only needs to be invoked if filter is changing
         // not when row object is modified.
         if (fromFilter) {
-          this.$emit('on-column-filter', {
+          this.$emit('column-filter', {
             columnFilters: this.columnFilters,
           });
         }
@@ -9762,8 +9775,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
           ])
         : createCommentVNode("v-if", true),
       createVNode(_component_vgt_global_search, {
-        onOnKeyup: $options.searchTableOnKeyUp,
-        onOnEnter: $options.searchTableOnEnter,
+        onKeyup: $options.searchTableOnKeyUp,
+        onEnter: $options.searchTableOnEnter,
         value: _ctx.globalSearchTerm,
         onInput: _cache[0] || (_cache[0] = $event => (_ctx.globalSearchTerm = $event)),
         "search-enabled": _ctx.searchEnabled && _ctx.externalSearchQuery == null,
@@ -9777,7 +9790,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
               ])
             }
           : undefined
-      ]), 1032 /* PROPS, DYNAMIC_SLOTS */, ["onOnKeyup", "onOnEnter", "value", "search-enabled", "global-search-placeholder"]),
+      ]), 1032 /* PROPS, DYNAMIC_SLOTS */, ["onKeyup", "onEnter", "value", "search-enabled", "global-search-placeholder"]),
       ($options.selectedRowCount && !_ctx.disableSelectInfo)
         ? (openBlock(), createElementBlock("div", {
             key: 1,
@@ -9811,8 +9824,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
               createCommentVNode(" Table header "),
               createVNode(_component_vgt_table_header, {
                 ref: "table-header-secondary",
-                onOnToggleSelectAll: $options.toggleSelectAll,
-                onOnSortChange: $options.changeSort,
+                onToggleSelectAll: $options.toggleSelectAll,
+                onSortChange: $options.changeSort,
                 onFilterChanged: $options.filterRows,
                 columns: $props.columns,
                 "line-numbers": $props.lineNumbers,
@@ -9842,7 +9855,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                   })
                 ]),
                 _: 3 /* FORWARDED */
-              }, 8 /* PROPS */, ["onOnToggleSelectAll", "onOnSortChange", "onFilterChanged", "columns", "line-numbers", "selectable", "all-selected", "all-selected-indeterminate", "mode", "sortable", "multiple-column-sort", "typed-columns", "getClasses", "searchEnabled", "paginated", "table-ref"])
+              }, 8 /* PROPS */, ["onToggleSelectAll", "onSortChange", "onFilterChanged", "columns", "line-numbers", "selectable", "all-selected", "all-selected-indeterminate", "mode", "sortable", "multiple-column-sort", "typed-columns", "getClasses", "searchEnabled", "paginated", "table-ref"])
             ], 2 /* CLASS */))
           : createCommentVNode("v-if", true)
       ]),
@@ -9866,8 +9879,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
           createCommentVNode(" Table header "),
           createVNode(_component_vgt_table_header, {
             ref: "table-header-primary",
-            onOnToggleSelectAll: $options.toggleSelectAll,
-            onOnSortChange: $options.changeSort,
+            onToggleSelectAll: $options.toggleSelectAll,
+            onSortChange: $options.changeSort,
             onFilterChanged: $options.filterRows,
             columns: $props.columns,
             "line-numbers": $props.lineNumbers,
@@ -9895,7 +9908,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
               })
             ]),
             _: 3 /* FORWARDED */
-          }, 8 /* PROPS */, ["onOnToggleSelectAll", "onOnSortChange", "onFilterChanged", "columns", "line-numbers", "selectable", "all-selected", "all-selected-indeterminate", "mode", "sortable", "multiple-column-sort", "typed-columns", "getClasses", "searchEnabled"]),
+          }, 8 /* PROPS */, ["onToggleSelectAll", "onSortChange", "onFilterChanged", "columns", "line-numbers", "selectable", "all-selected", "all-selected-indeterminate", "mode", "sortable", "multiple-column-sort", "typed-columns", "getClasses", "searchEnabled"]),
           createCommentVNode(" Table body starts here "),
           (openBlock(true), createElementBlock(Fragment, null, renderList($options.paginated, (headerRow, hIndex) => {
             return (openBlock(), createElementBlock("tbody", { key: hIndex }, [
@@ -9916,7 +9929,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                     "get-classes": $options.getClasses,
                     "full-colspan": $options.fullColspan,
                     groupIndex: hIndex,
-                    onOnSelectGroupChange: $event => ($options.toggleSelectGroup($event, headerRow))
+                    onSelectGroupChange: $event => ($options.toggleSelectGroup($event, headerRow))
                   }, createSlots({ _: 2 /* DYNAMIC */ }, [
                     ($options.hasHeaderRowTemplate)
                       ? {
@@ -9930,16 +9943,14 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                           ])
                         }
                       : undefined
-                  ]), 1032 /* PROPS, DYNAMIC_SLOTS */, ["onVgtExpand", "header-row", "columns", "line-numbers", "selectable", "select-all-by-group", "collapsable", "collect-formatted", "formatted-row", "class", "get-classes", "full-colspan", "groupIndex", "onOnSelectGroupChange"]))
+                  ]), 1032 /* PROPS, DYNAMIC_SLOTS */, ["onVgtExpand", "header-row", "columns", "line-numbers", "selectable", "select-all-by-group", "collapsable", "collect-formatted", "formatted-row", "class", "get-classes", "full-colspan", "groupIndex", "onSelectGroupChange"]))
                 : createCommentVNode("v-if", true),
               createCommentVNode(" normal rows here. we loop over all rows "),
               (openBlock(true), createElementBlock(Fragment, null, renderList(headerRow.children, (row, index) => {
-                return (openBlock(), createElementBlock(Fragment, {
-                  key: row.originalIndex
-                }, [
+                return (openBlock(), createElementBlock(Fragment, null, [
                   ($props.groupOptions.collapsable ? headerRow.vgtIsExpanded : true)
                     ? (openBlock(), createElementBlock("tr", {
-                        key: 0,
+                        key: row.originalIndex,
                         class: normalizeClass($options.getRowStyleClass(row)),
                         onMouseenter: $event => ($options.onMouseenter(row, index)),
                         onMouseleave: $event => ($options.onMouseleave(row, index)),
@@ -9964,10 +9975,10 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                             ], 8 /* PROPS */, _hoisted_9))
                           : createCommentVNode("v-if", true),
                         (openBlock(true), createElementBlock(Fragment, null, renderList($props.columns, (column, i) => {
-                          return (openBlock(), createElementBlock(Fragment, { key: i }, [
+                          return (openBlock(), createElementBlock(Fragment, null, [
                             (!column.hidden && column.field)
                               ? (openBlock(), createElementBlock("td", {
-                                  key: 0,
+                                  key: i,
                                   onClick: $event => ($options.onCellClicked(row, column, index, $event)),
                                   class: normalizeClass($options.getClasses(i, 'td', row)),
                                   "data-label": $props.compactMode ? column.label : undefined
@@ -9988,11 +9999,11 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                                 ], 10 /* CLASS, PROPS */, _hoisted_11))
                               : createCommentVNode("v-if", true)
                           ], 64 /* STABLE_FRAGMENT */))
-                        }), 128 /* KEYED_FRAGMENT */))
+                        }), 256 /* UNKEYED_FRAGMENT */))
                       ], 42 /* CLASS, PROPS, HYDRATE_EVENTS */, _hoisted_7))
                     : createCommentVNode("v-if", true)
                 ], 64 /* STABLE_FRAGMENT */))
-              }), 128 /* KEYED_FRAGMENT */)),
+              }), 256 /* UNKEYED_FRAGMENT */)),
               createCommentVNode(" if group row header is at the bottom "),
               ($options.groupHeaderOnBottom)
                 ? (openBlock(), createBlock(_component_vgt_header_row, {
@@ -10007,7 +10018,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                     "get-classes": $options.getClasses,
                     "full-colspan": $options.fullColspan,
                     groupIndex: _ctx.index,
-                    onOnSelectGroupChange: $event => ($options.toggleSelectGroup($event, headerRow))
+                    onSelectGroupChange: $event => ($options.toggleSelectGroup($event, headerRow))
                   }, createSlots({ _: 2 /* DYNAMIC */ }, [
                     ($options.hasHeaderRowTemplate)
                       ? {
@@ -10021,7 +10032,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                           ])
                         }
                       : undefined
-                  ]), 1032 /* PROPS, DYNAMIC_SLOTS */, ["header-row", "columns", "line-numbers", "selectable", "select-all-by-group", "collect-formatted", "formatted-row", "get-classes", "full-colspan", "groupIndex", "onOnSelectGroupChange"]))
+                  ]), 1032 /* PROPS, DYNAMIC_SLOTS */, ["header-row", "columns", "line-numbers", "selectable", "select-all-by-group", "collect-formatted", "formatted-row", "get-classes", "full-colspan", "groupIndex", "onSelectGroupChange"]))
                 : createCommentVNode("v-if", true)
             ]))
           }), 128 /* KEYED_FRAGMENT */)),
