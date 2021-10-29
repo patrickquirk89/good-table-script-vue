@@ -35,12 +35,17 @@ export const data = {
   ],
   "filePathRelative": "guide/advanced/checkbox-table.md",
   "git": {
-    "updatedTime": 1595439958000,
+    "updatedTime": 1632425937000,
     "contributors": [
       {
         "name": "Akshay Anand",
         "email": "aks9800@gmail.com",
         "commits": 4
+      },
+      {
+        "name": "Boris Flesch",
+        "email": "boris.flesch@gmail.com",
+        "commits": 1
       },
       {
         "name": "p0ps",
@@ -49,17 +54,4 @@ export const data = {
       }
     ]
   }
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }

@@ -34,7 +34,7 @@ export const data = {
   ],
   "filePathRelative": "guide/advanced/grouped-table.md",
   "git": {
-    "updatedTime": 1592872761000,
+    "updatedTime": 1632425937000,
     "contributors": [
       {
         "name": "Akshay Anand",
@@ -50,6 +50,11 @@ export const data = {
         "name": "owen",
         "email": "ciruz001@cougars.csusm.edu",
         "commits": 3
+      },
+      {
+        "name": "Boris Flesch",
+        "email": "boris.flesch@gmail.com",
+        "commits": 1
       },
       {
         "name": "Rob Gaston",
@@ -68,17 +73,4 @@ export const data = {
       }
     ]
   }
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }

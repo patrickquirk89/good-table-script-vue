@@ -89,7 +89,7 @@ export const data = {
   ],
   "filePathRelative": "guide/configuration/README.md",
   "git": {
-    "updatedTime": 1595439906000,
+    "updatedTime": 1632425937000,
     "contributors": [
       {
         "name": "Akshay Anand",
@@ -100,20 +100,12 @@ export const data = {
         "name": "AliReZa Sabouri",
         "email": "7004080+Alirezanet@users.noreply.github.com",
         "commits": 1
+      },
+      {
+        "name": "Boris Flesch",
+        "email": "boris.flesch@gmail.com",
+        "commits": 1
       }
     ]
   }
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }

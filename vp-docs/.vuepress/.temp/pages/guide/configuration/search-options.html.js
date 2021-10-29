@@ -45,12 +45,17 @@ export const data = {
   ],
   "filePathRelative": "guide/configuration/search-options.md",
   "git": {
-    "updatedTime": 1585919622000,
+    "updatedTime": 1632425937000,
     "contributors": [
       {
         "name": "Akshay Anand",
         "email": "aks9800@gmail.com",
         "commits": 3
+      },
+      {
+        "name": "Boris Flesch",
+        "email": "boris.flesch@gmail.com",
+        "commits": 1
       },
       {
         "name": "Vincent Tang",
@@ -59,17 +64,4 @@ export const data = {
       }
     ]
   }
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }

@@ -81,26 +81,18 @@ export const data = {
   ],
   "filePathRelative": "guide/configuration/table-events.md",
   "git": {
-    "updatedTime": 1552083186000,
+    "updatedTime": 1632425937000,
     "contributors": [
       {
         "name": "Akshay Anand",
         "email": "aks9800@gmail.com",
         "commits": 5
+      },
+      {
+        "name": "Boris Flesch",
+        "email": "boris.flesch@gmail.com",
+        "commits": 1
       }
     ]
   }
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }
