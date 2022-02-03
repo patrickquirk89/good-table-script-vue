@@ -1,5 +1,16 @@
 <template>
   <div>
+   <vue-good-table
+     :columns="columns"
+     :rows="rows"
+     :expand-rows-options="{
+       enabled: true,
+     }"
+     :search-options="{
+       enabled: true,
+     }"
+   >
+    </vue-good-table>
     {{ selectedIds }}
     <button @click="rows = [];">empty row</button>
     <button @click="resetTable">reset Table</button>
@@ -153,7 +164,9 @@ export default {
           score: 0.03343,
           bool: true,
           exact: 'match',
-          average: 1
+          average: 1,
+          children: ["test"],
+          expandedRow: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
         },
         {
           id: 3,
@@ -182,7 +195,8 @@ export default {
           score: 0.03343,
           bool: null,
           exact: 'rematch',
-          average: 2
+          average: 2,
+          expandedRow: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
         },
         {
           id: 5,
