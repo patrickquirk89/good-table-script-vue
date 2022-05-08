@@ -8457,6 +8457,9 @@ const _sfc_main = {
     expandedRowClasses: {
       default: '', type: String,
     },
+    expandedRowDetailClasses: {
+      default: '', type: String,
+    },
   },
 
 
@@ -9748,12 +9751,11 @@ const _hoisted_10 = ["disabled", "checked"];
 const _hoisted_11 = ["onClick", "data-label"];
 const _hoisted_12 = { key: 0 };
 const _hoisted_13 = ["innerHTML"];
-const _hoisted_14 = { key: 1 };
-const _hoisted_15 = ["colspan"];
-const _hoisted_16 = { key: 0 };
-const _hoisted_17 = ["colspan"];
-const _hoisted_18 = /*#__PURE__*/vue.createElementVNode("div", { class: "vgt-center-align vgt-text-disabled" }, " No data for table ", -1 /* HOISTED */);
-const _hoisted_19 = {
+const _hoisted_14 = ["colspan"];
+const _hoisted_15 = { key: 0 };
+const _hoisted_16 = ["colspan"];
+const _hoisted_17 = /*#__PURE__*/vue.createElementVNode("div", { class: "vgt-center-align vgt-text-disabled" }, " No data for table ", -1 /* HOISTED */);
+const _hoisted_18 = {
   key: 2,
   class: "vgt-wrap__actions-footer"
 };
@@ -10035,15 +10037,18 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                       ], 42 /* CLASS, PROPS, HYDRATE_EVENTS */, _hoisted_7))
                     : vue.createCommentVNode("v-if", true),
                   (_ctx.expandedRowIndex === index)
-                    ? (vue.openBlock(), vue.createElementBlock("tr", _hoisted_14, [
+                    ? (vue.openBlock(), vue.createElementBlock("tr", {
+                        key: 1,
+                        class: vue.normalizeClass($props.expandedRowDetailClasses)
+                      }, [
                         vue.createElementVNode("td", { colspan: $options.fullColspan }, [
                           vue.renderSlot(_ctx.$slots, "row-details", {
                             row: row,
                             formattedRow: $options.formattedRow(row),
                             index: index
                           })
-                        ], 8 /* PROPS */, _hoisted_15)
-                      ]))
+                        ], 8 /* PROPS */, _hoisted_14)
+                      ], 2 /* CLASS */))
                     : vue.createCommentVNode("v-if", true)
                 ], 64 /* STABLE_FRAGMENT */))
               }), 256 /* UNKEYED_FRAGMENT */)),
@@ -10080,20 +10085,20 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
             ]))
           }), 128 /* KEYED_FRAGMENT */)),
           ($options.showEmptySlot)
-            ? (vue.openBlock(), vue.createElementBlock("tbody", _hoisted_16, [
+            ? (vue.openBlock(), vue.createElementBlock("tbody", _hoisted_15, [
                 vue.createElementVNode("tr", null, [
                   vue.createElementVNode("td", { colspan: $options.fullColspan }, [
                     vue.renderSlot(_ctx.$slots, "emptystate", {}, () => [
-                      _hoisted_18
+                      _hoisted_17
                     ])
-                  ], 8 /* PROPS */, _hoisted_17)
+                  ], 8 /* PROPS */, _hoisted_16)
                 ])
               ]))
             : vue.createCommentVNode("v-if", true)
         ], 2 /* CLASS */)
       ], 6 /* CLASS, STYLE */),
       ($options.hasFooterSlot)
-        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_19, [
+        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_18, [
             vue.renderSlot(_ctx.$slots, "table-actions-bottom")
           ]))
         : vue.createCommentVNode("v-if", true),

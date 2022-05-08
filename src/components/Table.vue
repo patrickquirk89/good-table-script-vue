@@ -259,7 +259,7 @@
                 </td>
               </template>
             </tr>
-            <tr v-if='expandedRowIndex === index'>
+            <tr :class='expandedRowDetailClasses' v-if='expandedRowIndex === index'>
               <td :colspan='fullColspan'>
                 <slot
                   name='row-details'
@@ -452,6 +452,9 @@ export default {
     },
 
     expandedRowClasses: {
+      default: '', type: String,
+    },
+    expandedRowDetailClasses: {
       default: '', type: String,
     },
   },

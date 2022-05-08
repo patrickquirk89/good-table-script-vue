@@ -8453,6 +8453,9 @@ const _sfc_main = {
     expandedRowClasses: {
       default: '', type: String,
     },
+    expandedRowDetailClasses: {
+      default: '', type: String,
+    },
   },
 
 
@@ -9744,12 +9747,11 @@ const _hoisted_10 = ["disabled", "checked"];
 const _hoisted_11 = ["onClick", "data-label"];
 const _hoisted_12 = { key: 0 };
 const _hoisted_13 = ["innerHTML"];
-const _hoisted_14 = { key: 1 };
-const _hoisted_15 = ["colspan"];
-const _hoisted_16 = { key: 0 };
-const _hoisted_17 = ["colspan"];
-const _hoisted_18 = /*#__PURE__*/createElementVNode("div", { class: "vgt-center-align vgt-text-disabled" }, " No data for table ", -1 /* HOISTED */);
-const _hoisted_19 = {
+const _hoisted_14 = ["colspan"];
+const _hoisted_15 = { key: 0 };
+const _hoisted_16 = ["colspan"];
+const _hoisted_17 = /*#__PURE__*/createElementVNode("div", { class: "vgt-center-align vgt-text-disabled" }, " No data for table ", -1 /* HOISTED */);
+const _hoisted_18 = {
   key: 2,
   class: "vgt-wrap__actions-footer"
 };
@@ -10031,15 +10033,18 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                       ], 42 /* CLASS, PROPS, HYDRATE_EVENTS */, _hoisted_7))
                     : createCommentVNode("v-if", true),
                   (_ctx.expandedRowIndex === index)
-                    ? (openBlock(), createElementBlock("tr", _hoisted_14, [
+                    ? (openBlock(), createElementBlock("tr", {
+                        key: 1,
+                        class: normalizeClass($props.expandedRowDetailClasses)
+                      }, [
                         createElementVNode("td", { colspan: $options.fullColspan }, [
                           renderSlot(_ctx.$slots, "row-details", {
                             row: row,
                             formattedRow: $options.formattedRow(row),
                             index: index
                           })
-                        ], 8 /* PROPS */, _hoisted_15)
-                      ]))
+                        ], 8 /* PROPS */, _hoisted_14)
+                      ], 2 /* CLASS */))
                     : createCommentVNode("v-if", true)
                 ], 64 /* STABLE_FRAGMENT */))
               }), 256 /* UNKEYED_FRAGMENT */)),
@@ -10076,20 +10081,20 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
             ]))
           }), 128 /* KEYED_FRAGMENT */)),
           ($options.showEmptySlot)
-            ? (openBlock(), createElementBlock("tbody", _hoisted_16, [
+            ? (openBlock(), createElementBlock("tbody", _hoisted_15, [
                 createElementVNode("tr", null, [
                   createElementVNode("td", { colspan: $options.fullColspan }, [
                     renderSlot(_ctx.$slots, "emptystate", {}, () => [
-                      _hoisted_18
+                      _hoisted_17
                     ])
-                  ], 8 /* PROPS */, _hoisted_17)
+                  ], 8 /* PROPS */, _hoisted_16)
                 ])
               ]))
             : createCommentVNode("v-if", true)
         ], 2 /* CLASS */)
       ], 6 /* CLASS, STYLE */),
       ($options.hasFooterSlot)
-        ? (openBlock(), createElementBlock("div", _hoisted_19, [
+        ? (openBlock(), createElementBlock("div", _hoisted_18, [
             renderSlot(_ctx.$slots, "table-actions-bottom")
           ]))
         : createCommentVNode("v-if", true),
