@@ -248,6 +248,7 @@
                     :column='column'
                     :formattedRow='formattedRow(row)'
                     :index='index'
+                    :expandedRow='expandedRowIndex === index'
                   >
                       <span v-if='!column.html'>
                         {{ collectFormatted(row, column) }}
@@ -1181,7 +1182,6 @@ export default {
       } else {
         this.expandedRowIndex = index
       }
-      this.rows[index]['detailsShowing'] = this.expandedRowIndex;
     },
 
     // checkbox click should always do the following
@@ -1355,6 +1355,7 @@ export default {
       const classes = {
         'vgt-right-align': isRight,
         'vgt-left-align': !isRight,
+        expandedRowClasses: this.expandedRowIndex === index
       }
 
       // for td we need to check if value is

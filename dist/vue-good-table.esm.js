@@ -9181,7 +9181,6 @@ const _sfc_main = {
       } else {
         this.expandedRowIndex = index;
       }
-      this.rows[index]['detailsShowing'] = this.expandedRowIndex;
     },
 
     // checkbox click should always do the following
@@ -9355,6 +9354,7 @@ const _sfc_main = {
       const classes = {
         'vgt-right-align': isRight,
         'vgt-left-align': !isRight,
+        expandedRowClasses: this.expandedRowIndex === index
       };
 
       // for td we need to check if value is
@@ -10010,7 +10010,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                                     row: row,
                                     column: column,
                                     formattedRow: $options.formattedRow(row),
-                                    index: index
+                                    index: index,
+                                    expandedRow: _ctx.expandedRowIndex === index
                                   }, () => [
                                     (!column.html)
                                       ? (openBlock(), createElementBlock("span", _hoisted_12, toDisplayString($options.collectFormatted(row, column)), 1 /* TEXT */))
