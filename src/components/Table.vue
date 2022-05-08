@@ -1173,7 +1173,6 @@ export default {
     },
 
     toggleRowExpand(row, index) {
-      console.log('toggleRowExpand', row, index);
       if(this.expandedRowIndex === index) {
         this.expandedRowIndex = null;
       } else {
@@ -1183,12 +1182,9 @@ export default {
 
     // checkbox click should always do the following
     onCheckboxClicked(row, index, event) {
-      console.log('onCheckboxClicked', row, index, event);
-      alert(this.enableRowExpand);
       if(this.enableRowExpand) {
         this.toggleRowExpand(row, index);
       }
-      alert(this.expandedRowIndex);
       row['vgtSelected'] = !row.vgtSelected;
       this.$emit('row-click', {
         row,
@@ -1208,13 +1204,9 @@ export default {
     },
 
     onRowClicked(row, index, event) {
-      console.log('onRowClicked', row, index, event);
-      alert(this.enableRowExpand);
       if(this.enableRowExpand) {
         this.toggleRowExpand(row, index);
       }
-      alert(this.expandedRowIndex);
-
       if (this.selectable && !this.selectOnCheckboxOnly) {
         row['vgtSelected'] = !row.vgtSelected;
       }
