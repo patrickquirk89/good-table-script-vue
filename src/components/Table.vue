@@ -207,7 +207,7 @@
               <tr
                 v-if="groupOptions.collapsable ? headerRow.vgtIsExpanded : true"
                 :key="row.originalIndex"
-                
+
                 :class="getRowStyleClass(row)"
                 @mouseenter="onMouseenter(row, index)"
                 @mouseleave="onMouseleave(row, index)"
@@ -257,6 +257,16 @@
                     </slot>
                   </td>
                 </template>
+              </tr>
+              <tr  v-if='expandedRowIndex === index'>
+                <td :colspan="fullColspan">
+                  <slot
+                    name="row-details"
+                    :row="row"
+                    :formattedRow="formattedRow(row)"
+                    :index="index">
+                  </slot>
+                </td>
               </tr>
             </template>
             <!-- if group row header is at the bottom -->
@@ -376,6 +386,7 @@ export default {
     rtl: Boolean,
     rowStyleClass: { default: null, type: [Function, String] },
     compactMode: Boolean,
+    enableRowExpand: { default: false, type: Boolean },
 
     groupOptions: {
       default() {
@@ -420,7 +431,6 @@ export default {
           perPage: 10,
           perPageDropdown: null,
           perPageDropdownEnabled: true,
-          position: 'bottom',
           dropdownAllowAll: true,
           mode: 'records', // or pages
           infoFn: null,
@@ -500,6 +510,8 @@ export default {
     forceSearch: false,
     sortChanged: false,
     dataTypes: dataTypes || {},
+
+    expandedRowIndex: null,
   }),
 
   emits: [
@@ -852,7 +864,7 @@ export default {
                 const column = this.getColumnForField(srt.field);
                 const xvalue = this.collect(xRow, srt.field);
                 const yvalue = this.collect(yRow, srt.field);
-  
+
                 //* if a custom sort function has been provided we use that
                 const { sortFn } = column;
                 if (sortFn && typeof sortFn === 'function') {
@@ -1160,6 +1172,14 @@ export default {
       this.sortChanged = true;
     },
 
+    toggleRowExpand(row, index) {
+      if(this.expandedRowIndex === index) {
+        this.expandedRowIndex = null;
+      } else {
+        this.expandedRowIndex = index;
+      }
+    },
+
     // checkbox click should always do the following
     onCheckboxClicked(row, index, event) {
       row['vgtSelected'] = !row.vgtSelected;
@@ -1183,6 +1203,9 @@ export default {
     onRowClicked(row, index, event) {
       if (this.selectable && !this.selectOnCheckboxOnly) {
         row['vgtSelected'] = !row.vgtSelected;
+      }
+      if(this.enableRowExpand) {
+        this.toggleRowExpand(row, index);
       }
       this.$emit('row-click', {
         row,

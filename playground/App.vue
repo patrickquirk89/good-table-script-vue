@@ -9,6 +9,7 @@
     <input type="text" v-model="searchTerm">
     <vue-good-table
       ref="my-table"
+      :enable-row-expand="true"
       v-on:column-filter="onColumnFilter"
       v-on:select-all="onSelectAll"
       v-on:sort-change="onSortChange"
@@ -24,6 +25,7 @@
         selectOnCheckboxOnly: false,
         disableSelectInfo: true,
       }"
+
       theme="polar-bear"
       styleClass="vgt-table"
       :sort-options="{
