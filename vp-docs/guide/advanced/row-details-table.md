@@ -6,6 +6,8 @@ This option allows you to show or hide the details of a row.
 
 type: `Boolean`
 
+`table-row` props now also contain `props.expandedRow` this will be true if row is expanded
+
 Object containing select options
 ```html
 <vue-good-table
@@ -13,6 +15,8 @@ Object containing select options
   :columns="columns"
   :rows="rows"
   :enable-row-expand="true"
+  expanded-row-classes="bg-red"
+  expanded-row-detail-classes="bg-yellow"
 >
 ```
 
@@ -22,7 +26,9 @@ Object containing select options
   v-on:selected-rows-change="selectionChanged"
   :columns="columns"
   :rows="rows"
-  :enable-row-expand="true">
+  :enable-row-expand="true"
+  expanded-row-classes="bg-red"
+  expanded-row-detail-classes="bg-yellow">
     <template #row-details="props">
       <p>{{ props.formattedRow }}</p>
     </template>
