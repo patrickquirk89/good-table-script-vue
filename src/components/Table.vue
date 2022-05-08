@@ -9,7 +9,7 @@
       </slot>
     </div>
     <div class="vgt-inner-wrap"
-      :class="{'is-loading': isLoading}">
+         :class="{'is-loading': isLoading}">
       <slot
         v-if="paginate && paginateOnTop"
         name="pagination-top"
@@ -73,9 +73,9 @@
           v-if="fixedHeader"
           :class="tableStyleClasses"
         >
-        <colgroup>
-          <col v-for="(column, index) in columns" :key="index" :id="`col-${index}`">
-        </colgroup>
+          <colgroup>
+            <col v-for="(column, index) in columns" :key="index" :id="`col-${index}`">
+          </colgroup>
           <!-- Table header -->
           <vgt-table-header
             ref="table-header-secondary"
@@ -107,9 +107,9 @@
             <template #column-filter="slotProps"
             >
               <slot
-                  name="column-filter"
-                  :column="slotProps.column"
-                  :updateFilters="slotProps.updateFilters"
+                name="column-filter"
+                :column="slotProps.column"
+                :updateFilters="slotProps.updateFilters"
               ></slot>
             </template>
           </vgt-table-header>
@@ -124,9 +124,9 @@
           ref="table"
           :class="tableStyles"
         >
-        <colgroup>
-          <col v-for="(column, index) in columns" :key="index" :id="`col-${index}`">
-        </colgroup>
+          <colgroup>
+            <col v-for="(column, index) in columns" :key="index" :id="`col-${index}`">
+          </colgroup>
           <!-- Table header -->
           <vgt-table-header
             ref="table-header-primary"
@@ -169,146 +169,146 @@
             v-for="(headerRow, hIndex) in paginated"
             :key="hIndex"
           >
-            <!-- if group row header is at the top -->
-            <vgt-header-row
-              v-if="groupHeaderOnTop"
-              @vgtExpand="toggleExpand(headerRow[rowKeyField])"
-              :header-row="headerRow"
-              :columns="columns"
-              :line-numbers="lineNumbers"
-              :selectable="selectable"
-              :select-all-by-group="selectAllByGroup"
-              :collapsable="groupOptions.collapsable"
-              :collect-formatted="collectFormatted"
-              :formatted-row="formattedRow"
-              :class="getRowStyleClass(headerRow)"
-              :get-classes="getClasses"
-              :full-colspan="fullColspan"
-              :groupIndex="hIndex"
-              v-on:select-group-change="toggleSelectGroup($event, headerRow)"
-            >
-              <template
-                v-if="hasHeaderRowTemplate"
-                #table-header-row="slotProps"
-              >
-                <slot
-                  name="table-header-row"
-                  :column="slotProps.column"
-                  :formattedRow="slotProps.formattedRow"
-                  :row="slotProps.row"
-                >
-                </slot>
-              </template>
-            </vgt-header-row>
-            <!-- normal rows here. we loop over all rows -->
+          <!-- if group row header is at the top -->
+          <vgt-header-row
+            v-if="groupHeaderOnTop"
+            @vgtExpand="toggleExpand(headerRow[rowKeyField])"
+            :header-row="headerRow"
+            :columns="columns"
+            :line-numbers="lineNumbers"
+            :selectable="selectable"
+            :select-all-by-group="selectAllByGroup"
+            :collapsable="groupOptions.collapsable"
+            :collect-formatted="collectFormatted"
+            :formatted-row="formattedRow"
+            :class="getRowStyleClass(headerRow)"
+            :get-classes="getClasses"
+            :full-colspan="fullColspan"
+            :groupIndex="hIndex"
+            v-on:select-group-change="toggleSelectGroup($event, headerRow)"
+          >
             <template
-              v-for="(row, index) in headerRow.children"
+              v-if="hasHeaderRowTemplate"
+              #table-header-row="slotProps"
             >
-              <tr
-                v-if="groupOptions.collapsable ? headerRow.vgtIsExpanded : true"
-                :key="row.originalIndex"
-
-                :class="getRowStyleClass(row)"
-                @mouseenter="onMouseenter(row, index)"
-                @mouseleave="onMouseleave(row, index)"
-                @dblclick="onRowDoubleClicked(row, index, $event)"
-                @click="onRowClicked(row, index, $event)"
-                @auxclick="onRowAuxClicked(row, index, $event)"
+              <slot
+                name="table-header-row"
+                :column="slotProps.column"
+                :formattedRow="slotProps.formattedRow"
+                :row="slotProps.row"
               >
-                <th
-                  v-if="lineNumbers"
-                  class="line-numbers"
+              </slot>
+            </template>
+          </vgt-header-row>
+          <!-- normal rows here. we loop over all rows -->
+          <template
+            v-for="(row, index) in headerRow.children"
+          >
+            <tr
+              v-if="groupOptions.collapsable ? headerRow.vgtIsExpanded : true"
+              :key="row.originalIndex"
+
+              :class="getRowStyleClass(row)"
+              @mouseenter="onMouseenter(row, index)"
+              @mouseleave="onMouseleave(row, index)"
+              @dblclick="onRowDoubleClicked(row, index, $event)"
+              @click="onRowClicked(row, index, $event)"
+              @auxclick="onRowAuxClicked(row, index, $event)"
+            >
+              <th
+                v-if="lineNumbers"
+                class="line-numbers"
+              >
+                {{ getCurrentIndex(row.originalIndex) }}
+              </th>
+              <th
+                v-if="selectable"
+                @click.stop="onCheckboxClicked(row, index, $event)"
+                class="vgt-checkbox-col"
+              >
+                <input
+                  type="checkbox"
+                  :disabled="row.vgtDisabled"
+                  :checked="row.vgtSelected"
+                />
+              </th>
+              <template
+                v-for="(column, i) in columns"
+              >
+                <td
+                  :key="i"
+                  v-if="!column.hidden && column.field"
+                  @click="onCellClicked(row, column, index, $event)"
+                  :class="getClasses(i, 'td', row)"
+                  v-bind:data-label="compactMode ? column.label : undefined"
                 >
-                  {{ getCurrentIndex(row.originalIndex) }}
-                </th>
-                <th
-                  v-if="selectable"
-                  @click.stop="onCheckboxClicked(row, index, $event)"
-                  class="vgt-checkbox-col"
-                >
-                  <input
-                    type="checkbox"
-                    :disabled="row.vgtDisabled"
-                    :checked="row.vgtSelected"
-                  />
-                </th>
-                <template
-                  v-for="(column, i) in columns"
-                >
-                  <td
-                    :key="i"
-                    v-if="!column.hidden && column.field"
-                    @click="onCellClicked(row, column, index, $event)"
-                    :class="getClasses(i, 'td', row)"
-                    v-bind:data-label="compactMode ? column.label : undefined"
+                  <slot
+                    name="table-row"
+                    :row="row"
+                    :column="column"
+                    :formattedRow="formattedRow(row)"
+                    :index="index"
                   >
-                    <slot
-                      name="table-row"
-                      :row="row"
-                      :column="column"
-                      :formattedRow="formattedRow(row)"
-                      :index="index"
-                    >
                       <span v-if="!column.html">
                         {{ collectFormatted(row, column) }}
                       </span>
-                      <span v-else v-html="collect(row, column.field)">
+                    <span v-else v-html="collect(row, column.field)">
                       </span>
-                    </slot>
-                  </td>
-                </template>
-              </tr>
-              <tr  v-if='expandedRowIndex === index'>
-                <td :colspan="fullColspan">
-                  <slot
-                    name="row-details"
-                    :row="row"
-                    :formattedRow="formattedRow(row)"
-                    :index="index">
                   </slot>
                 </td>
-              </tr>
-            </template>
-            <!-- if group row header is at the bottom -->
-            <vgt-header-row
-              v-if="groupHeaderOnBottom"
-              :header-row="headerRow"
-              :columns="columns"
-              :line-numbers="lineNumbers"
-              :selectable="selectable"
-              :select-all-by-group="selectAllByGroup"
-              :collect-formatted="collectFormatted"
-              :formatted-row="formattedRow"
-              :get-classes="getClasses"
-              :full-colspan="fullColspan"
-              :groupIndex="index"
-              v-on:select-group-change="toggleSelectGroup($event, headerRow)"
-            >
-              <template
-                v-if="hasHeaderRowTemplate"
-                #table-header-row="slotProps"
-              >
-                <slot
-                  name="table-header-row"
-                  :column="slotProps.column"
-                  :formattedRow="slotProps.formattedRow"
-                  :row="slotProps.row"
-                >
-                </slot>
               </template>
-            </vgt-header-row>
-          </tbody>
-
-          <tbody v-if="showEmptySlot">
-            <tr>
+            </tr>
+            <tr  v-if='expandedRowIndex === index'>
               <td :colspan="fullColspan">
-                <slot name="emptystate">
-                  <div class="vgt-center-align vgt-text-disabled">
-                    No data for table
-                  </div>
+                <slot
+                  name="row-details"
+                  :row="row"
+                  :formattedRow="formattedRow(row)"
+                  :index="index">
                 </slot>
               </td>
             </tr>
+          </template>
+          <!-- if group row header is at the bottom -->
+          <vgt-header-row
+            v-if="groupHeaderOnBottom"
+            :header-row="headerRow"
+            :columns="columns"
+            :line-numbers="lineNumbers"
+            :selectable="selectable"
+            :select-all-by-group="selectAllByGroup"
+            :collect-formatted="collectFormatted"
+            :formatted-row="formattedRow"
+            :get-classes="getClasses"
+            :full-colspan="fullColspan"
+            :groupIndex="index"
+            v-on:select-group-change="toggleSelectGroup($event, headerRow)"
+          >
+            <template
+              v-if="hasHeaderRowTemplate"
+              #table-header-row="slotProps"
+            >
+              <slot
+                name="table-header-row"
+                :column="slotProps.column"
+                :formattedRow="slotProps.formattedRow"
+                :row="slotProps.row"
+              >
+              </slot>
+            </template>
+          </vgt-header-row>
+          </tbody>
+
+          <tbody v-if="showEmptySlot">
+          <tr>
+            <td :colspan="fullColspan">
+              <slot name="emptystate">
+                <div class="vgt-center-align vgt-text-disabled">
+                  No data for table
+                </div>
+              </slot>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -635,7 +635,7 @@ export default {
       return (
         this.selectedRowCount > 0 &&
         ((this.selectAllByPage &&
-          this.selectedPageRowsCount === this.totalPageRowCount) ||
+            this.selectedPageRowsCount === this.totalPageRowCount) ||
           (!this.selectAllByPage &&
             this.selectedRowCount === this.totalRowCount))
       );
@@ -871,13 +871,13 @@ export default {
                   sortValue =
                     sortValue ||
                     sortFn(xvalue, yvalue, column, xRow, yRow) *
-                      (srt.type === SORT_TYPES.Descending ? -1 : 1);
+                    (srt.type === SORT_TYPES.Descending ? -1 : 1);
                 } else {
                   //* else we use our own sort
                   sortValue =
                     sortValue ||
                     column.typeDef.compare(xvalue, yvalue, column) *
-                      (srt.type === SORT_TYPES.Descending ? -1 : 1);
+                    (srt.type === SORT_TYPES.Descending ? -1 : 1);
                 }
               }
             }
@@ -1184,9 +1184,11 @@ export default {
     // checkbox click should always do the following
     onCheckboxClicked(row, index, event) {
       console.log('onCheckboxClicked', row, index, event);
+      alert(this.enableRowExpand);
       if(this.enableRowExpand) {
         this.toggleRowExpand(row, index);
       }
+      alert(this.expandedRowIndex);
       row['vgtSelected'] = !row.vgtSelected;
       this.$emit('row-click', {
         row,
@@ -1207,9 +1209,11 @@ export default {
 
     onRowClicked(row, index, event) {
       console.log('onRowClicked', row, index, event);
+      alert(this.enableRowExpand);
       if(this.enableRowExpand) {
         this.toggleRowExpand(row, index);
       }
+      alert(this.expandedRowIndex);
 
       if (this.selectable && !this.selectOnCheckboxOnly) {
         row['vgtSelected'] = !row.vgtSelected;
@@ -1438,7 +1442,7 @@ export default {
                   this.columnFilters[fieldKey(col.field)],
                   false,
                   col.filterOptions &&
-                    typeof col.filterOptions.filterDropdownItems === 'object'
+                  typeof col.filterOptions.filterDropdownItems === 'object'
                 );
               });
               // should we remove the header?
