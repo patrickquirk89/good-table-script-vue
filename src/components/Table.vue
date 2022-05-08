@@ -1357,7 +1357,8 @@ export default {
         'vgt-left-align': !isRight,
       }
 
-      classes[this.expandedRowClasses] = this.expandedRowIndex === index;
+      classes[this.expandedRowClasses] = this.expandedRowIndex === index
+
       // for td we need to check if value is
       // a function.
       if (typeof custom === 'function') {

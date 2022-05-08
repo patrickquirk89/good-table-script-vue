@@ -10,6 +10,7 @@
     <vue-good-table
       ref="my-table"
       :enable-row-expand="true"
+      expanded-row-classes="bg-red-500"
       v-on:column-filter="onColumnFilter"
       v-on:select-all="onSelectAll"
       v-on:sort-change="onSortChange"

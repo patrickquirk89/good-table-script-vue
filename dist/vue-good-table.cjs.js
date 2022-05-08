@@ -9361,6 +9361,7 @@ const _sfc_main = {
       };
 
       classes[this.expandedRowClasses] = this.expandedRowIndex === index;
+
       // for td we need to check if value is
       // a function.
       if (typeof custom === 'function') {
