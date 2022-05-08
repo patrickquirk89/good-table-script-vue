@@ -9356,8 +9356,6 @@ const _sfc_main = {
         'vgt-left-align': !isRight,
       };
 
-      classes[this.expandedRowClasses] = this.expandedRowIndex === index;
-
       // for td we need to check if value is
       // a function.
       if (typeof custom === 'function') {
@@ -9489,6 +9487,11 @@ const _sfc_main = {
       if (rowStyleClasses) {
         classes += ` ${rowStyleClasses}`;
       }
+
+      if(this.expandedRowIndex === row.originalIndex) {
+        classes += ` ${this.expandedRowClasses}`;
+      }
+
       return classes
     },
 
