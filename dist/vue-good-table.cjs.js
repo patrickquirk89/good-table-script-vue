@@ -8378,7 +8378,7 @@ const _sfc_main = {
   props: {
     isLoading: { default: null, type: Boolean },
     maxHeight: { default: null, type: String },
-    fixedHeader: Boolean ,
+    fixedHeader: Boolean,
     theme: { default: '' },
     mode: { default: 'local' }, // could be remote
     totalRows: {}, // required if mode = 'remote'
@@ -8386,7 +8386,7 @@ const _sfc_main = {
     columns: {},
     rows: {},
     lineNumbers: Boolean,
-    responsive: { default: true , type: Boolean },
+    responsive: { default: true, type: Boolean },
     rtl: Boolean,
     rowStyleClass: { default: null, type: [Function, String] },
     compactMode: Boolean,
@@ -8397,8 +8397,8 @@ const _sfc_main = {
         return {
           enabled: false,
           collapsable: false,
-          rowKey: null
-        };
+          rowKey: null,
+        }
       },
     },
 
@@ -8411,7 +8411,7 @@ const _sfc_main = {
           clearSelectionText: 'clear',
           disableSelectInfo: false,
           selectAllByGroup: false,
-        };
+        }
       },
     },
 
@@ -8422,7 +8422,7 @@ const _sfc_main = {
           enabled: true,
           multipleColumns: true,
           initialSortBy: {},
-        };
+        }
       },
     },
 
@@ -8438,7 +8438,7 @@ const _sfc_main = {
           dropdownAllowAll: true,
           mode: 'records', // or pages
           infoFn: null,
-        };
+        }
       },
     },
 
@@ -8450,11 +8450,14 @@ const _sfc_main = {
           externalQuery: null,
           searchFn: null,
           placeholder: 'Search Table',
-        };
+        }
       },
     },
-  },
 
+    expandedRowClasses: {
+      default: '', type: String,
+    },
+  },
 
 
   data: () => ({
@@ -8605,34 +8608,34 @@ const _sfc_main = {
         return this.tableStyleClasses
     },
     hasFooterSlot() {
-      return !!this.$slots['table-actions-bottom'];
+      return !!this.$slots['table-actions-bottom']
     },
     wrapperStyles() {
       return {
         overflow: 'scroll-y',
         maxHeight: this.maxHeight ? this.maxHeight : 'auto',
-      };
+      }
     },
 
     rowKeyField() {
-      return this.groupOptions.rowKey || 'vgt_header_id';
+      return this.groupOptions.rowKey || 'vgt_header_id'
     },
 
     hasHeaderRowTemplate() {
-      return !!this.$slots['table-header-row'];
+      return !!this.$slots['table-header-row']
     },
 
     showEmptySlot() {
-      if (!this.paginated.length) return true;
+      if (!this.paginated.length) return true
 
       if (
         this.paginated[0].label === 'no groups' &&
         !this.paginated[0].children.length
       ) {
-        return true;
+        return true
       }
 
-      return false;
+      return false
     },
 
     allSelected() {
@@ -8642,7 +8645,7 @@ const _sfc_main = {
             this.selectedPageRowsCount === this.totalPageRowCount) ||
           (!this.selectAllByPage &&
             this.selectedRowCount === this.totalRowCount))
-      );
+      )
     },
 
     allSelectedIndeterminate() {
@@ -8650,19 +8653,19 @@ const _sfc_main = {
         !this.allSelected &&
         ((this.selectAllByPage && this.selectedPageRowsCount > 0) ||
           (!this.selectAllByPage && this.selectedRowCount > 0))
-      );
+      )
     },
 
     selectionInfo() {
-      return `${this.selectedRowCount} ${this.selectionText}`;
+      return `${this.selectedRowCount} ${this.selectionText}`
     },
 
     selectedRowCount() {
-      return this.selectedRows.length;
+      return this.selectedRows.length
     },
 
     selectedPageRowsCount() {
-      return this.selectedPageRows.length;
+      return this.selectedPageRows.length
     },
 
     selectedPageRows() {
@@ -8674,7 +8677,7 @@ const _sfc_main = {
           }
         });
       });
-      return selectedRows;
+      return selectedRows
     },
 
     selectedRows() {
@@ -8686,7 +8689,7 @@ const _sfc_main = {
           }
         });
       });
-      return selectedRows.sort((r1, r2) => r1.originalIndex - r2.originalIndex);
+      return selectedRows.sort((r1, r2) => r1.originalIndex - r2.originalIndex)
     },
 
     fullColspan() {
@@ -8698,7 +8701,7 @@ const _sfc_main = {
       }
       if (this.lineNumbers) fullColspan++;
       if (this.selectable) fullColspan++;
-      return fullColspan;
+      return fullColspan
     },
     groupHeaderOnTop() {
       if (
@@ -8707,12 +8710,12 @@ const _sfc_main = {
         this.groupOptions.headerPosition &&
         this.groupOptions.headerPosition === 'bottom'
       ) {
-        return false;
+        return false
       }
-      if (this.groupOptions && this.groupOptions.enabled) return true;
+      if (this.groupOptions && this.groupOptions.enabled) return true
 
       // will only get here if groupOptions is false
-      return false;
+      return false
     },
     groupHeaderOnBottom() {
       if (
@@ -8721,40 +8724,40 @@ const _sfc_main = {
         this.groupOptions.headerPosition &&
         this.groupOptions.headerPosition === 'bottom'
       ) {
-        return true;
+        return true
       }
-      return false;
+      return false
     },
     totalRowCount() {
       const total = this.processedRows.reduce((total, headerRow) => {
         const childrenCount = headerRow.children ? headerRow.children.length : 0;
-        return total + childrenCount;
+        return total + childrenCount
       }, 0);
-      return total;
+      return total
     },
     totalPageRowCount() {
       const total = this.paginated.reduce((total, headerRow) => {
         const childrenCount = headerRow.children ? headerRow.children.length : 0;
-        return total + childrenCount;
+        return total + childrenCount
       }, 0);
-      return total;
+      return total
     },
     wrapStyleClasses() {
       let classes = 'vgt-wrap';
       if (this.rtl) classes += ' rtl';
       classes += ` ${this.theme}`;
-      return classes;
+      return classes
     },
     tableStyleClasses() {
       let classes = this.styleClass;
       classes += ` ${this.theme}`;
-      return classes;
+      return classes
     },
 
     searchTerm() {
       return this.externalSearchQuery != null
         ? this.externalSearchQuery
-        : this.globalSearchTerm;
+        : this.globalSearchTerm
     },
 
     //
@@ -8764,19 +8767,19 @@ const _sfc_main = {
         !!this.globalSearchTerm &&
         this.searchTrigger !== 'enter'
       ) {
-        return true;
+        return true
       }
 
       if (this.externalSearchQuery != null && this.searchTrigger !== 'enter') {
-        return true;
+        return true
       }
 
       if (this.forceSearch) {
         this.forceSearch = false;
-        return true;
+        return true
       }
 
-      return false;
+      return false
     },
 
     // this is done everytime sortColumn
@@ -8786,7 +8789,7 @@ const _sfc_main = {
       // we only process rows when mode is local
       let computedRows = this.filteredRows;
       if (this.mode === 'remote') {
-        return computedRows;
+        return computedRows
       }
 
       // take care of the global filter here also
@@ -8811,22 +8814,22 @@ const _sfc_main = {
                   row,
                   col,
                   this.collectFormatted(row, col),
-                  this.searchTerm
+                  this.searchTerm,
                 );
                 if (foundMatch) {
                   filteredRows.push(row);
-                  break; // break the loop
+                  break // break the loop
                 }
               } else {
                 // comparison
                 const matched = defaultType.filterPredicate(
                   this.collectFormatted(row, col),
                   this.searchTerm,
-                  this.searchSkipDiacritics
+                  this.searchSkipDiacritics,
                 );
                 if (matched) {
                   filteredRows.push(row);
-                  break; // break loop
+                  break // break loop
                 }
               }
             }
@@ -8885,7 +8888,7 @@ const _sfc_main = {
                 }
               }
             }
-            return sortValue;
+            return sortValue
           });
         });
       }
@@ -8896,14 +8899,14 @@ const _sfc_main = {
         this.filteredRows = computedRows;
       }
 
-      return computedRows;
+      return computedRows
     },
 
     paginated() {
-      if (!this.processedRows.length) return [];
+      if (!this.processedRows.length) return []
 
       if (this.mode === 'remote') {
-        return this.processedRows;
+        return this.processedRows
       }
 
       //* flatten the rows for paging.
@@ -8960,7 +8963,7 @@ const _sfc_main = {
           hRow.children.push(flatRow);
         }
       });
-      return reconstructedRows;
+      return reconstructedRows
     },
 
     originalRows() {
@@ -8985,7 +8988,7 @@ const _sfc_main = {
         });
       });
 
-      return nestedRows;
+      return nestedRows
     },
 
     typedColumns() {
@@ -8994,11 +8997,11 @@ const _sfc_main = {
         const column = columns[i];
         column.typeDef = this.dataTypes[column.type] || defaultType;
       }
-      return columns;
+      return columns
     },
 
     hasRowClickListener() {
-      return this.$attrs && this.$attrs['row-click'];
+      return this.$attrs && this.$attrs['row-click']
     },
   },
 
@@ -9044,7 +9047,7 @@ const _sfc_main = {
 
     getColumnForField(field) {
       for (let i = 0; i < this.typedColumns.length; i += 1) {
-        if (this.typedColumns[i].field === field) return this.typedColumns[i];
+        if (this.typedColumns[i].field === field) return this.typedColumns[i]
       }
     },
 
@@ -9088,7 +9091,7 @@ const _sfc_main = {
     toggleSelectAll() {
       if (this.allSelected) {
         this.unselectAllInternal();
-        return;
+        return
       }
       const rows = this.selectAllByPage ? this.paginated : this.filteredRows;
       rows.forEach((headerRow) => {
@@ -9126,7 +9129,7 @@ const _sfc_main = {
         currentPage: this.currentPage,
         currentPerPage: this.currentPerPage,
         total: Math.floor(this.totalRowCount / this.currentPerPage),
-      };
+      }
     },
 
     pageChanged(pagination) {
@@ -9171,22 +9174,23 @@ const _sfc_main = {
       // after this. just set table loading to true
       if (this.mode === 'remote') {
         this.$emit('update:isLoading', true);
-        return;
+        return
       }
       this.sortChanged = true;
     },
 
     toggleRowExpand(row, index) {
-      if(this.expandedRowIndex === index) {
+      if (this.expandedRowIndex === index) {
         this.expandedRowIndex = null;
       } else {
         this.expandedRowIndex = index;
       }
+      this.rows[index]['detailsShowing'] = this.expandedRowIndex;
     },
 
     // checkbox click should always do the following
     onCheckboxClicked(row, index, event) {
-      if(this.enableRowExpand) {
+      if (this.enableRowExpand) {
         this.toggleRowExpand(row, index);
       }
       row['vgtSelected'] = !row.vgtSelected;
@@ -9208,7 +9212,7 @@ const _sfc_main = {
     },
 
     onRowClicked(row, index, event) {
-      if(this.enableRowExpand) {
+      if (this.enableRowExpand) {
         this.toggleRowExpand(row, index);
       }
       if (this.selectable && !this.selectOnCheckboxOnly) {
@@ -9288,16 +9292,16 @@ const _sfc_main = {
         const splitter = selector.split('.');
         for (let i = 0; i < splitter.length; i++) {
           if (typeof result === 'undefined' || result === null) {
-            return undefined;
+            return undefined
           }
           result = result[splitter[i]];
         }
-        return result;
+        return result
       }
 
-      if (typeof field === 'function') return field(obj);
-      if (typeof field === 'string') return dig(obj, field);
-      return undefined;
+      if (typeof field === 'function') return field(obj)
+      if (typeof field === 'string') return dig(obj, field)
+      return undefined
     },
 
     collectFormatted(obj, column, headerRow = false) {
@@ -9307,12 +9311,12 @@ const _sfc_main = {
       } else {
         value = this.collect(obj, column.field);
       }
-      if (value === undefined) return '';
+      if (value === undefined) return ''
 
       // if user has supplied custom formatter,
       // use that here
       if (column.formatFn && typeof column.formatFn === 'function') {
-        return column.formatFn(value, obj);
+        return column.formatFn(value, obj)
       }
 
       // lets format the resultant data
@@ -9326,8 +9330,8 @@ const _sfc_main = {
 
       let result = type.format(value, column);
       // we must have some values in compact mode
-      if (this.compactMode && (result == '' || result == null)) return '-';
-      return result;
+      if (this.compactMode && (result == '' || result == null)) return '-'
+      return result
     },
 
     formattedRow(row, isHeaderRow = false) {
@@ -9339,11 +9343,11 @@ const _sfc_main = {
           formattedRow[col.field] = this.collectFormatted(
             row,
             col,
-            isHeaderRow
+            isHeaderRow,
           );
         }
       }
-      return formattedRow;
+      return formattedRow
     },
 
     // Get classes for the given column index & element.
@@ -9364,7 +9368,7 @@ const _sfc_main = {
       } else if (typeof custom === 'string') {
         classes[custom] = true;
       }
-      return classes;
+      return classes
     },
 
     // method to filter rows
@@ -9403,14 +9407,14 @@ const _sfc_main = {
             // if remote filtering has already been taken care of.
             this.filteredRows = computedRows;
           }
-          return;
+          return
         }
 
         const fieldKey = (field) => {
-          if (typeof(field) === 'function' && field.name) {
-            return field.name;
+          if (typeof (field) === 'function' && field.name) {
+            return field.name
           }
-          return field;
+          return field
         };
 
         for (let i = 0; i < this.typedColumns.length; i++) {
@@ -9427,8 +9431,8 @@ const _sfc_main = {
                 ) {
                   return col.filterOptions.filterFn(
                     this.collect(row, col.field),
-                    this.columnFilters[fieldKey(col.field)]
-                  );
+                    this.columnFilters[fieldKey(col.field)],
+                  )
                 }
 
                 // Otherwise Use default filters
@@ -9438,8 +9442,8 @@ const _sfc_main = {
                   this.columnFilters[fieldKey(col.field)],
                   false,
                   col.filterOptions &&
-                  typeof col.filterOptions.filterDropdownItems === 'object'
-                );
+                  typeof col.filterOptions.filterDropdownItems === 'object',
+                )
               });
               // should we remove the header?
               headerRow.children = newChildren;
@@ -9466,14 +9470,14 @@ const _sfc_main = {
             const c = children[j];
             if (c.originalIndex === rowId) {
               found = true;
-              break;
+              break
             }
             index += 1;
           }
         }
-        if (found) break;
+        if (found) break
       }
-      return ((this.currentPage - 1) * this.currentPerPage) + index + 1;
+      return ((this.currentPage - 1) * this.currentPerPage) + index + 1
     },
 
     getRowStyleClass(row) {
@@ -9488,7 +9492,7 @@ const _sfc_main = {
       if (rowStyleClasses) {
         classes += ` ${rowStyleClasses}`;
       }
-      return classes;
+      return classes
     },
 
     handleGrouped(originalRows) {
@@ -9504,7 +9508,7 @@ const _sfc_main = {
           childRow.vgt_id = i;
         });
       });
-      return originalRows;
+      return originalRows
     },
 
     initializePagination() {
@@ -9653,7 +9657,7 @@ const _sfc_main = {
         } else {
           const hasField = Object.prototype.hasOwnProperty.call(
             initSortBy,
-            'field'
+            'field',
           );
           if (hasField) ref.setInitialSort([initSortBy]);
         }
