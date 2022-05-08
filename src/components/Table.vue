@@ -1173,6 +1173,7 @@ export default {
     },
 
     toggleRowExpand(row, index) {
+      console.log('toggleRowExpand', row, index);
       if(this.expandedRowIndex === index) {
         this.expandedRowIndex = null;
       } else {
@@ -1201,11 +1202,13 @@ export default {
     },
 
     onRowClicked(row, index, event) {
-      if (this.selectable && !this.selectOnCheckboxOnly) {
-        row['vgtSelected'] = !row.vgtSelected;
-      }
+      console.log('onRowClicked', row, index, event);
       if(this.enableRowExpand) {
         this.toggleRowExpand(row, index);
+      }
+
+      if (this.selectable && !this.selectOnCheckboxOnly) {
+        row['vgtSelected'] = !row.vgtSelected;
       }
       this.$emit('row-click', {
         row,
