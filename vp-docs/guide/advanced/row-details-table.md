@@ -11,7 +11,6 @@ type: `Boolean`
 Object containing select options
 ```html
 <vue-good-table
-  v-on:selected-rows-change="selectionChanged"
   :columns="columns"
   :rows="rows"
   :enable-row-expand="true"
@@ -23,7 +22,6 @@ Object containing select options
 ### Example
 ```vue
 <vue-good-table
-  v-on:selected-rows-change="selectionChanged"
   :columns="columns"
   :rows="rows"
   :enable-row-expand="true"
