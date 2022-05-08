@@ -1183,6 +1183,10 @@ export default {
 
     // checkbox click should always do the following
     onCheckboxClicked(row, index, event) {
+      console.log('onCheckboxClicked', row, index, event);
+      if(this.enableRowExpand) {
+        this.toggleRowExpand(row, index);
+      }
       row['vgtSelected'] = !row.vgtSelected;
       this.$emit('row-click', {
         row,
