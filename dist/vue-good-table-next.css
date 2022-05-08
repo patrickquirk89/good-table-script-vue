@@ -660,7 +660,7 @@ table.vgt-table tr.clickable:hover {
 }
 .vgt-table.black-rhino td {
   border-bottom: 1px solid #bbc5d6;
-  color: #49515e;
+  color: rgb(73, 81, 94);
 }
 .vgt-table.black-rhino th.line-numbers, .vgt-table.black-rhino th.vgt-checkbox-col {
   color: #dae2f0;
@@ -716,10 +716,10 @@ table.vgt-table tr.clickable:hover {
   padding-right: 3px;
 }
 .vgt-wrap.black-rhino .vgt-wrap__footer .footer__row-count__label {
-  color: #98a5b9;
+  color: rgb(152, 165, 185);
 }
 .vgt-wrap.black-rhino .vgt-wrap__footer .footer__row-count__select {
-  color: #49515e;
+  color: rgb(73, 81, 94);
   background: #34445f;
   border: none;
   -webkit-appearance: none;
@@ -744,7 +744,7 @@ table.vgt-table tr.clickable:hover {
   right: 6px;
   top: 50%;
   margin-top: -1px;
-  border-top: 6px solid #49515e;
+  border-top: 6px solid rgb(73, 81, 94);
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-bottom: none;
@@ -861,7 +861,7 @@ table.vgt-table tr.clickable:hover {
   padding-right: 3px;
 }
 .vgt-wrap.polar-bear .vgt-wrap__footer .footer__row-count__label {
-  color: #98a5b9;
+  color: rgb(152, 165, 185);
 }
 .vgt-wrap.polar-bear .vgt-wrap__footer .footer__row-count__select {
   text-align: center;

@@ -1,5 +1,5 @@
 /*!
-  * vue-good-table-next v0.0.1
+  * vue-good-table-next v0.1.0
   * (c) 2021-present Boris Flesch <boris@singlequote.net>
   * (c) 2017-2021 xaksis <shay@crayonbits.com>
   * @license MIT
@@ -2339,10 +2339,11 @@ var defaultType = {
 };
 
 var _export_sfc = (sfc, props) => {
+  const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
-    sfc[key] = val;
+    target[key] = val;
   }
-  return sfc
+  return target;
 };
 
 const _sfc_main$6 = {
@@ -4076,7 +4077,7 @@ function buildLocalizeFn(args) {
       valuesArray = args.values[_width] || args.values[_defaultWidth];
     }
 
-    var index = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex; // @ts-ignore: For some reason TypeScript just don't want to match it, no matter how hard we try. I challange you to try to remove it!
+    var index = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex; // @ts-ignore: For some reason TypeScript just don't want to match it, no matter how hard we try. I challenge you to try to remove it!
 
     return valuesArray[index];
   };
@@ -4446,101 +4447,6 @@ function subMilliseconds(dirtyDate, dirtyAmount) {
   return addMilliseconds(dirtyDate, -amount);
 }
 
-function addLeadingZeros(number, targetLength) {
-  var sign = number < 0 ? '-' : '';
-  var output = Math.abs(number).toString();
-
-  while (output.length < targetLength) {
-    output = '0' + output;
-  }
-
-  return sign + output;
-}
-
-/*
- * |     | Unit                           |     | Unit                           |
- * |-----|--------------------------------|-----|--------------------------------|
- * |  a  | AM, PM                         |  A* |                                |
- * |  d  | Day of month                   |  D  |                                |
- * |  h  | Hour [1-12]                    |  H  | Hour [0-23]                    |
- * |  m  | Minute                         |  M  | Month                          |
- * |  s  | Second                         |  S  | Fraction of second             |
- * |  y  | Year (abs)                     |  Y  |                                |
- *
- * Letters marked by * are not implemented but reserved by Unicode standard.
- */
-
-var formatters$2 = {
-  // Year
-  y: function (date, token) {
-    // From http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_tokens
-    // | Year     |     y | yy |   yyy |  yyyy | yyyyy |
-    // |----------|-------|----|-------|-------|-------|
-    // | AD 1     |     1 | 01 |   001 |  0001 | 00001 |
-    // | AD 12    |    12 | 12 |   012 |  0012 | 00012 |
-    // | AD 123   |   123 | 23 |   123 |  0123 | 00123 |
-    // | AD 1234  |  1234 | 34 |  1234 |  1234 | 01234 |
-    // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
-    var signedYear = date.getUTCFullYear(); // Returns 1 for 1 BC (which is year 0 in JavaScript)
-
-    var year = signedYear > 0 ? signedYear : 1 - signedYear;
-    return addLeadingZeros(token === 'yy' ? year % 100 : year, token.length);
-  },
-  // Month
-  M: function (date, token) {
-    var month = date.getUTCMonth();
-    return token === 'M' ? String(month + 1) : addLeadingZeros(month + 1, 2);
-  },
-  // Day of the month
-  d: function (date, token) {
-    return addLeadingZeros(date.getUTCDate(), token.length);
-  },
-  // AM or PM
-  a: function (date, token) {
-    var dayPeriodEnumValue = date.getUTCHours() / 12 >= 1 ? 'pm' : 'am';
-
-    switch (token) {
-      case 'a':
-      case 'aa':
-        return dayPeriodEnumValue.toUpperCase();
-
-      case 'aaa':
-        return dayPeriodEnumValue;
-
-      case 'aaaaa':
-        return dayPeriodEnumValue[0];
-
-      case 'aaaa':
-      default:
-        return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';
-    }
-  },
-  // Hour [1-12]
-  h: function (date, token) {
-    return addLeadingZeros(date.getUTCHours() % 12 || 12, token.length);
-  },
-  // Hour [0-23]
-  H: function (date, token) {
-    return addLeadingZeros(date.getUTCHours(), token.length);
-  },
-  // Minute
-  m: function (date, token) {
-    return addLeadingZeros(date.getUTCMinutes(), token.length);
-  },
-  // Second
-  s: function (date, token) {
-    return addLeadingZeros(date.getUTCSeconds(), token.length);
-  },
-  // Fraction of second
-  S: function (date, token) {
-    var numberOfDigits = token.length;
-    var milliseconds = date.getUTCMilliseconds();
-    var fractionalSeconds = Math.floor(milliseconds * Math.pow(10, numberOfDigits - 3));
-    return addLeadingZeros(fractionalSeconds, token.length);
-  }
-};
-var formatters$3 = formatters$2;
-
 var MILLISECONDS_IN_DAY = 86400000; // This function will be a part of public API when UTC function will be implemented.
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
@@ -4643,7 +4549,7 @@ function startOfUTCWeek(dirtyDate, dirtyOptions) {
 
 function getUTCWeekYear(dirtyDate, dirtyOptions) {
   requiredArgs(1, arguments);
-  var date = toDate(dirtyDate, dirtyOptions);
+  var date = toDate(dirtyDate);
   var year = date.getUTCFullYear();
   var options = dirtyOptions || {};
   var locale = options.locale;
@@ -4702,6 +4608,101 @@ function getUTCWeek(dirtyDate, options) {
 
   return Math.round(diff / MILLISECONDS_IN_WEEK) + 1;
 }
+
+function addLeadingZeros(number, targetLength) {
+  var sign = number < 0 ? '-' : '';
+  var output = Math.abs(number).toString();
+
+  while (output.length < targetLength) {
+    output = '0' + output;
+  }
+
+  return sign + output;
+}
+
+/*
+ * |     | Unit                           |     | Unit                           |
+ * |-----|--------------------------------|-----|--------------------------------|
+ * |  a  | AM, PM                         |  A* |                                |
+ * |  d  | Day of month                   |  D  |                                |
+ * |  h  | Hour [1-12]                    |  H  | Hour [0-23]                    |
+ * |  m  | Minute                         |  M  | Month                          |
+ * |  s  | Second                         |  S  | Fraction of second             |
+ * |  y  | Year (abs)                     |  Y  |                                |
+ *
+ * Letters marked by * are not implemented but reserved by Unicode standard.
+ */
+
+var formatters$2 = {
+  // Year
+  y: function (date, token) {
+    // From http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_tokens
+    // | Year     |     y | yy |   yyy |  yyyy | yyyyy |
+    // |----------|-------|----|-------|-------|-------|
+    // | AD 1     |     1 | 01 |   001 |  0001 | 00001 |
+    // | AD 12    |    12 | 12 |   012 |  0012 | 00012 |
+    // | AD 123   |   123 | 23 |   123 |  0123 | 00123 |
+    // | AD 1234  |  1234 | 34 |  1234 |  1234 | 01234 |
+    // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
+    var signedYear = date.getUTCFullYear(); // Returns 1 for 1 BC (which is year 0 in JavaScript)
+
+    var year = signedYear > 0 ? signedYear : 1 - signedYear;
+    return addLeadingZeros(token === 'yy' ? year % 100 : year, token.length);
+  },
+  // Month
+  M: function (date, token) {
+    var month = date.getUTCMonth();
+    return token === 'M' ? String(month + 1) : addLeadingZeros(month + 1, 2);
+  },
+  // Day of the month
+  d: function (date, token) {
+    return addLeadingZeros(date.getUTCDate(), token.length);
+  },
+  // AM or PM
+  a: function (date, token) {
+    var dayPeriodEnumValue = date.getUTCHours() / 12 >= 1 ? 'pm' : 'am';
+
+    switch (token) {
+      case 'a':
+      case 'aa':
+        return dayPeriodEnumValue.toUpperCase();
+
+      case 'aaa':
+        return dayPeriodEnumValue;
+
+      case 'aaaaa':
+        return dayPeriodEnumValue[0];
+
+      case 'aaaa':
+      default:
+        return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';
+    }
+  },
+  // Hour [1-12]
+  h: function (date, token) {
+    return addLeadingZeros(date.getUTCHours() % 12 || 12, token.length);
+  },
+  // Hour [0-23]
+  H: function (date, token) {
+    return addLeadingZeros(date.getUTCHours(), token.length);
+  },
+  // Minute
+  m: function (date, token) {
+    return addLeadingZeros(date.getUTCMinutes(), token.length);
+  },
+  // Second
+  s: function (date, token) {
+    return addLeadingZeros(date.getUTCSeconds(), token.length);
+  },
+  // Fraction of second
+  S: function (date, token) {
+    var numberOfDigits = token.length;
+    var milliseconds = date.getUTCMilliseconds();
+    var fractionalSeconds = Math.floor(milliseconds * Math.pow(10, numberOfDigits - 3));
+    return addLeadingZeros(fractionalSeconds, token.length);
+  }
+};
+var formatters$3 = formatters$2;
 
 var dayPeriodEnum = {
   am: 'am',
@@ -5614,7 +5615,7 @@ function timeLongFormatter(pattern, formatLong) {
 }
 
 function dateTimeLongFormatter(pattern, formatLong) {
-  var matchResult = pattern.match(/(P+)(p+)?/);
+  var matchResult = pattern.match(/(P+)(p+)?/) || [];
   var datePattern = matchResult[1];
   var timePattern = matchResult[2];
 
@@ -5945,7 +5946,7 @@ var unescapedLatinCharacterRegExp$1 = /[a-zA-Z]/;
  * 8. `YY` and `YYYY` tokens represent week-numbering years but they are often confused with years.
  *    You should enable `options.useAdditionalWeekYearTokens` to use them. See: https://git.io/fxCyr
  *
- * 9. `D` and `DD` tokens represent days of the year but they are ofthen confused with days of the month.
+ * 9. `D` and `DD` tokens represent days of the year but they are often confused with days of the month.
  *    You should enable `options.useAdditionalDayOfYearTokens` to use them. See: https://git.io/fxCyr
  *
  * ### v2.0.0 breaking changes:
@@ -7317,7 +7318,7 @@ var parsers = {
       date.setUTCHours(dayPeriodEnumToHours(value), 0, 0, 0);
       return date;
     },
-    incompatibleTokens: ['b', 'B', 'H', 'K', 'k', 't', 'T']
+    incompatibleTokens: ['b', 'B', 'H', 'k', 't', 'T']
   },
   // AM, PM, midnight
   b: {
@@ -7359,7 +7360,7 @@ var parsers = {
       date.setUTCHours(dayPeriodEnumToHours(value), 0, 0, 0);
       return date;
     },
-    incompatibleTokens: ['a', 'B', 'H', 'K', 'k', 't', 'T']
+    incompatibleTokens: ['a', 'B', 'H', 'k', 't', 'T']
   },
   // in the morning, in the afternoon, in the evening, at night
   B: {
@@ -7495,7 +7496,7 @@ var parsers = {
 
       return date;
     },
-    incompatibleTokens: ['a', 'b', 'h', 'H', 'k', 't', 'T']
+    incompatibleTokens: ['h', 'H', 'k', 't', 'T']
   },
   // Hour [1-24]
   k: {
@@ -7853,7 +7854,7 @@ var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
  * |                                 |     | tt      | ...                               | 2     |
  * | Fraction of second              |  30 | S       | 0, 1, ..., 9                      |       |
  * |                                 |     | SS      | 00, 01, ..., 99                   |       |
- * |                                 |     | SSS     | 000, 0001, ..., 999               |       |
+ * |                                 |     | SSS     | 000, 001, ..., 999                |       |
  * |                                 |     | SSSS    | ...                               | 2     |
  * | Milliseconds timestamp          |  20 | T       | 512969520900                      |       |
  * |                                 |     | TT      | ...                               | 2     |
@@ -8389,6 +8390,7 @@ const _sfc_main = {
     rtl: Boolean,
     rowStyleClass: { default: null, type: [Function, String] },
     compactMode: Boolean,
+    enableRowExpand: { default: false, type: Boolean },
 
     groupOptions: {
       default() {
@@ -8433,7 +8435,6 @@ const _sfc_main = {
           perPage: 10,
           perPageDropdown: null,
           perPageDropdownEnabled: true,
-          position: 'bottom',
           dropdownAllowAll: true,
           mode: 'records', // or pages
           infoFn: null,
@@ -8513,6 +8514,8 @@ const _sfc_main = {
     forceSearch: false,
     sortChanged: false,
     dataTypes: dataTypes || {},
+
+    expandedRowIndex: null,
   }),
 
   emits: [
@@ -8636,7 +8639,7 @@ const _sfc_main = {
       return (
         this.selectedRowCount > 0 &&
         ((this.selectAllByPage &&
-          this.selectedPageRowsCount === this.totalPageRowCount) ||
+            this.selectedPageRowsCount === this.totalPageRowCount) ||
           (!this.selectAllByPage &&
             this.selectedRowCount === this.totalRowCount))
       );
@@ -8865,20 +8868,20 @@ const _sfc_main = {
                 const column = this.getColumnForField(srt.field);
                 const xvalue = this.collect(xRow, srt.field);
                 const yvalue = this.collect(yRow, srt.field);
-  
+
                 //* if a custom sort function has been provided we use that
                 const { sortFn } = column;
                 if (sortFn && typeof sortFn === 'function') {
                   sortValue =
                     sortValue ||
                     sortFn(xvalue, yvalue, column, xRow, yRow) *
-                      (srt.type === SORT_TYPES.Descending ? -1 : 1);
+                    (srt.type === SORT_TYPES.Descending ? -1 : 1);
                 } else {
                   //* else we use our own sort
                   sortValue =
                     sortValue ||
                     column.typeDef.compare(xvalue, yvalue, column) *
-                      (srt.type === SORT_TYPES.Descending ? -1 : 1);
+                    (srt.type === SORT_TYPES.Descending ? -1 : 1);
                 }
               }
             }
@@ -9173,8 +9176,23 @@ const _sfc_main = {
       this.sortChanged = true;
     },
 
+    toggleRowExpand(row, index) {
+      console.log('toggleRowExpand', row, index);
+      if(this.expandedRowIndex === index) {
+        this.expandedRowIndex = null;
+      } else {
+        this.expandedRowIndex = index;
+      }
+    },
+
     // checkbox click should always do the following
     onCheckboxClicked(row, index, event) {
+      console.log('onCheckboxClicked', row, index, event);
+      alert(this.enableRowExpand);
+      if(this.enableRowExpand) {
+        this.toggleRowExpand(row, index);
+      }
+      alert(this.expandedRowIndex);
       row['vgtSelected'] = !row.vgtSelected;
       this.$emit('row-click', {
         row,
@@ -9194,6 +9212,13 @@ const _sfc_main = {
     },
 
     onRowClicked(row, index, event) {
+      console.log('onRowClicked', row, index, event);
+      alert(this.enableRowExpand);
+      if(this.enableRowExpand) {
+        this.toggleRowExpand(row, index);
+      }
+      alert(this.expandedRowIndex);
+
       if (this.selectable && !this.selectOnCheckboxOnly) {
         row['vgtSelected'] = !row.vgtSelected;
       }
@@ -9421,7 +9446,7 @@ const _sfc_main = {
                   this.columnFilters[fieldKey(col.field)],
                   false,
                   col.filterOptions &&
-                    typeof col.filterOptions.filterDropdownItems === 'object'
+                  typeof col.filterOptions.filterDropdownItems === 'object'
                 );
               });
               // should we remove the header?
@@ -9723,10 +9748,12 @@ const _hoisted_10 = ["disabled", "checked"];
 const _hoisted_11 = ["onClick", "data-label"];
 const _hoisted_12 = { key: 0 };
 const _hoisted_13 = ["innerHTML"];
-const _hoisted_14 = { key: 0 };
+const _hoisted_14 = { key: 1 };
 const _hoisted_15 = ["colspan"];
-const _hoisted_16 = /*#__PURE__*/vue.createElementVNode("div", { class: "vgt-center-align vgt-text-disabled" }, " No data for table ", -1 /* HOISTED */);
-const _hoisted_17 = {
+const _hoisted_16 = { key: 0 };
+const _hoisted_17 = ["colspan"];
+const _hoisted_18 = /*#__PURE__*/vue.createElementVNode("div", { class: "vgt-center-align vgt-text-disabled" }, " No data for table ", -1 /* HOISTED */);
+const _hoisted_19 = {
   key: 2,
   class: "vgt-wrap__actions-footer"
 };
@@ -10005,6 +10032,17 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                           ], 64 /* STABLE_FRAGMENT */))
                         }), 256 /* UNKEYED_FRAGMENT */))
                       ], 42 /* CLASS, PROPS, HYDRATE_EVENTS */, _hoisted_7))
+                    : vue.createCommentVNode("v-if", true),
+                  (_ctx.expandedRowIndex === index)
+                    ? (vue.openBlock(), vue.createElementBlock("tr", _hoisted_14, [
+                        vue.createElementVNode("td", { colspan: $options.fullColspan }, [
+                          vue.renderSlot(_ctx.$slots, "row-details", {
+                            row: row,
+                            formattedRow: $options.formattedRow(row),
+                            index: index
+                          })
+                        ], 8 /* PROPS */, _hoisted_15)
+                      ]))
                     : vue.createCommentVNode("v-if", true)
                 ], 64 /* STABLE_FRAGMENT */))
               }), 256 /* UNKEYED_FRAGMENT */)),
@@ -10041,20 +10079,20 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
             ]))
           }), 128 /* KEYED_FRAGMENT */)),
           ($options.showEmptySlot)
-            ? (vue.openBlock(), vue.createElementBlock("tbody", _hoisted_14, [
+            ? (vue.openBlock(), vue.createElementBlock("tbody", _hoisted_16, [
                 vue.createElementVNode("tr", null, [
                   vue.createElementVNode("td", { colspan: $options.fullColspan }, [
                     vue.renderSlot(_ctx.$slots, "emptystate", {}, () => [
-                      _hoisted_16
+                      _hoisted_18
                     ])
-                  ], 8 /* PROPS */, _hoisted_15)
+                  ], 8 /* PROPS */, _hoisted_17)
                 ])
               ]))
             : vue.createCommentVNode("v-if", true)
         ], 2 /* CLASS */)
       ], 6 /* CLASS, STYLE */),
       ($options.hasFooterSlot)
-        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_17, [
+        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_19, [
             vue.renderSlot(_ctx.$slots, "table-actions-bottom")
           ]))
         : vue.createCommentVNode("v-if", true),

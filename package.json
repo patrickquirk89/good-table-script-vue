@@ -48,7 +48,7 @@
     "chromedriver": "^95.0.0",
     "eslint-config-airbnb": "^18.2.0",
     "postcss-loader": "^6.2.0",
-    "rollup": "^2.58.3",
+    "rollup": "^2.72.1",
     "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-scss": "3",
     "rollup-plugin-terser": "^7.0.2",
