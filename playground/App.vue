@@ -36,6 +36,9 @@
         enabled: true,
         skipDiacritics: true,
       }">
+      <template #row-details="props">
+        <p>{{ props.formattedRow }}</p>
+      </template>
     </vue-good-table>
     <h3>Remote Table</h3>
     <remote-table/>
