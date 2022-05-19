@@ -274,7 +274,7 @@ export default {
       }
     });
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.ro) {
       this.ro.disconnect();
     }
