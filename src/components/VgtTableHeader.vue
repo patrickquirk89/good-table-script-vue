@@ -119,6 +119,7 @@ export default {
         this.setColumnStyles();
       },
       immediate: true,
+      deep: true
     },
     tableRef: {
       handler() {
