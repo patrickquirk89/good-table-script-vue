@@ -9,6 +9,14 @@
         :indeterminate.prop="allSelectedIndeterminate"
         @change="toggleSelectAll" />
     </th>
+    <th
+      scope="col"
+      v-if="expandRowsEnabled"
+      class="vgt-checkbox-col">
+      <a href="" @click.prevent="toggleExpandRowsAll" class="vgt-wrap__expander">
+        (+)
+      </a>
+    </th>
     <template
         v-for="(column, index) in columns"
         :key="index"
@@ -39,6 +47,7 @@
     @filter-changed="filterRows"
     :global-search-enabled="searchEnabled"
     :line-numbers="lineNumbers"
+    :expand-rows-enabled="expandRowsEnabled"
     :selectable="selectable"
     :columns="columns"
     :mode="mode"
@@ -81,6 +90,10 @@ export default {
     columns: {
       type: Array,
     },
+    expandRowsEnabled: {
+      default: false,
+      type: Boolean,
+    },
     mode: {
       type: String,
     },
@@ -110,6 +123,7 @@ export default {
   },
   emits: [
     'toggle-select-all',
+    'toggle-expand-rows-all',
     'sort-change',
     'filter-changed',
   ],
@@ -151,6 +165,9 @@ export default {
   methods: {
     reset() {
       this.$refs['filter-row'].reset(true);
+    },
+    toggleExpandRowsAll() {
+      this.$emit('toggle-expand-rows-all');
     },
     toggleSelectAll() {
       this.$emit('toggle-select-all');

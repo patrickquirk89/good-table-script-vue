@@ -1,5 +1,6 @@
 <template>
 <tr v-if="hasFilterRow">
+  <th v-if="expandRowsEnabled"></th>
   <th v-if="lineNumbers"></th>
   <th v-if="selectable"></th>
   <template
@@ -70,6 +71,7 @@ export default {
   props: [
     'lineNumbers',
     'columns',
+    'expandRowsEnabled',
     'typedColumns',
     'globalSearchEnabled',
     'selectable',

@@ -80,6 +80,7 @@
           <vgt-table-header
             ref="table-header-secondary"
             v-on:toggle-select-all="toggleSelectAll"
+            v-on:toggle-expand-rows-all="toggleExpandRowsAll"
             v-on:sort-change="changeSort"
             @filter-changed="filterRows"
             :columns="columns"
@@ -93,6 +94,7 @@
             :typed-columns="typedColumns"
             :getClasses="getClasses"
             :searchEnabled="searchEnabled"
+            :expandRowsEnabled="expandRowsEnabled"
             :paginated="paginated"
             :table-ref="$refs.table"
           >
@@ -131,6 +133,7 @@
           <vgt-table-header
             ref="table-header-primary"
             v-on:toggle-select-all="toggleSelectAll"
+            v-on:toggle-expand-rows-all="toggleExpandRowsAll"
             v-on:sort-change="changeSort"
             @filter-changed="filterRows"
             :columns="columns"
@@ -144,6 +147,7 @@
             :typed-columns="typedColumns"
             :getClasses="getClasses"
             :searchEnabled="searchEnabled"
+            :expandRowsEnabled="expandRowsEnabled"
           >
             <template #table-column="slotProps"
             >
@@ -232,6 +236,20 @@
                     :checked="row.vgtSelected"
                   />
                 </th>
+                <template v-if="expandRowsEnabled">
+                  <td>
+                    <a href="#" @click.prevent="toggleExpandRow(row, index, $event)" class="vgt-wrap__expander">
+                      <template v-if="row['expandedRow']">
+                        <template v-if="row['expanded']">
+                          (-)
+                        </template>
+                        <template v-else>
+                          (+)
+                        </template>
+                      </template>
+                    </a>
+                  </td>
+                </template>
                 <template
                   v-for="(column, i) in columns"
                 >
@@ -257,6 +275,11 @@
                     </slot>
                   </td>
                 </template>
+              </tr>
+              <tr v-if="row['expanded']">
+                <td :colspan="fullColspan">
+                  {{ row['expandedRow'] }}
+                </td>
               </tr>
             </template>
             <!-- if group row header is at the bottom -->
@@ -377,6 +400,14 @@ export default {
     rowStyleClass: { default: null, type: [Function, String] },
     compactMode: Boolean,
 
+    expandRowsOptions: {
+      default() {
+        return {
+          enabled: false,
+        };
+      },
+    },
+
     groupOptions: {
       default() {
         return {
@@ -473,6 +504,9 @@ export default {
     defaultSortBy: null,
     multipleColumnSort: true,
 
+    // internat expand rows options
+    expandRowsEnabled: false,
+
     // internal search options
     searchEnabled: false,
     searchTrigger: null,
@@ -542,6 +576,14 @@ export default {
         if (!isEqual(newValue, oldValue)) {
           this.initializePagination();
         }
+      },
+      deep: true,
+      immediate: true,
+    },
+
+    expandRowsOptions: {
+      handler(newValue, oldValue) {
+        this.initializeExpandRows();
       },
       deep: true,
       immediate: true,
@@ -682,6 +724,7 @@ export default {
       }
       if (this.lineNumbers) fullColspan++;
       if (this.selectable) fullColspan++;
+      if (this.expandRowsEnabled) fullColspan++;
       return fullColspan;
     },
     groupHeaderOnTop() {
@@ -968,7 +1011,6 @@ export default {
           row.originalIndex = index++;
         });
       });
-
       return nestedRows;
     },
 
@@ -1083,6 +1125,18 @@ export default {
       this.emitSelectedRows();
     },
 
+    toggleExpandRowsAll() {
+      for (let row of this.rows) {
+        if (row['expandedRow']) {
+          row['expanded'] = !row['expanded'];
+        } else {
+          row['expanded'] = false;
+        }
+      }
+      this.$emit('toggle-expand-rows-all', {
+      });
+    },
+
     toggleSelectGroup(event, headerRow) {
       headerRow.children.forEach((row) => {
         row['vgtSelected'] = event;
@@ -1169,6 +1223,10 @@ export default {
         selected: !!row.vgtSelected,
         event,
       });
+    },
+
+    toggleExpandRow(row) {
+      row['expanded'] = !row['expanded']
     },
 
     onRowDoubleClicked(row, index, event) {
@@ -1563,6 +1621,16 @@ export default {
 
       if (typeof infoFn === 'function') {
         this.paginationInfoFn = infoFn;
+      }
+    },
+
+    initializeExpandRows() {
+      const {
+       enabled,
+      } = this.expandRowsOptions;
+
+      if (typeof enabled === 'boolean') {
+        this.expandRowsEnabled = enabled;
       }
     },
 
