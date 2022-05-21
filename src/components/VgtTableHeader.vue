@@ -119,6 +119,7 @@ export default {
         this.setColumnStyles();
       },
       immediate: true,
+      deep: true
     },
     tableRef: {
       handler() {
@@ -274,7 +275,7 @@ export default {
       }
     });
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.ro) {
       this.ro.disconnect();
     }

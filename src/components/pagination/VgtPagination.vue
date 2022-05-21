@@ -102,8 +102,11 @@ export default {
       immediate: true,
     },
 
-    customRowsPerPageDropdown() {
-      this.handlePerPage();
+    customRowsPerPageDropdown: {
+      handler() {
+        this.handlePerPage();
+      },
+      deep: true,
     },
 
     total: {
